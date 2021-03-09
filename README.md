@@ -1,1 +1,1 @@
-# Ezocode
+# Ezcode
