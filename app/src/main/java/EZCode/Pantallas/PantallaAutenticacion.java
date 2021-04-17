@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import java.io.Serializable;
 
+import EZCode.Autenticacion.ControlAutenticacion;
 import EZCode.Entidades.Estudiante;
 
 
@@ -21,6 +22,7 @@ public class PantallaAutenticacion extends AppCompatActivity {
     private EditText usuario;
     private EditText password;
     private Estudiante estudiante;
+    private ControlAutenticacion;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +44,9 @@ public class PantallaAutenticacion extends AppCompatActivity {
             }
         });
     }
+    /*
+    Esta autenticacion se debera realizar desde el controlador
+     */
     public boolean autenticarUsuario(){
         if(usuario.getText().toString().equals("hola@correo.com") &&
                 password.getText().toString().equals("12345")) {

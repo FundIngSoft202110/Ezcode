@@ -56,12 +56,12 @@ public class PantallaPrincipal extends AppCompatActivity {
 
     void abrirPantallaMetas(){
         Intent intent = new Intent(this, PantallaMetas.class);
-        intent.putExtra("estudiante", (Serializable) this.estudiante);
+        intent.putExtra("Estudiante", this.estudiante);
         startActivity(intent);
     }
     void abrirPantallaHorario(){
         Intent intent = new Intent(this, PantallaHorario.class);
-        intent.putExtra("estudiante", (Serializable) this.estudiante);
+        intent.putExtra("Estudiante", this.estudiante);
         startActivity(intent);
     }
 }
