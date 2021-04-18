@@ -3,17 +3,20 @@ package EZCode.Metas;
 import EZCode.Entidades.*;
 
 public class ControlMetas {
-    private Estudiante estudiante;
 
-    public ControlMetas(Estudiante estudiante) {
-        this.estudiante = estudiante;
+    public void modificarMeta(Meta meta, int i){
+        Estudiante.getInstance().getMetas().remove(i);
+        Estudiante.getInstance().getMetas().add(i,meta);
     }
 
-    public Estudiante getEstudiante() {
-        return estudiante;
+    public void eliminarMeta(int i){
+        Estudiante.getInstance().getMetas().remove(i);
     }
 
-    public void setEstudiante(Estudiante estudiante) {
-        this.estudiante = estudiante;
+    public void agregarMeta(Meta meta){
+        Estudiante.getInstance().getMetas().add(meta);
     }
+
+    public ControlMetas() { }
+
 }

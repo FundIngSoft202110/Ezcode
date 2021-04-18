@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EZCode">
-        <activity android:name=".PantallaAgregarMeta"></activity>
+        <activity android:name=".PantallaModificarMeta"></activity>
+        <activity android:name=".PantallaAgregarMeta" />
         <activity android:name=".PantallaRegistro" />
         <activity android:name=".MainActivity">
             <intent-filter>
