@@ -21,8 +21,6 @@ public class PantallaAutenticacion extends AppCompatActivity {
     private TextView error;
     private EditText usuario;
     private EditText password;
-    private Estudiante estudiante;
-    private ControlAutenticacion;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +48,7 @@ public class PantallaAutenticacion extends AppCompatActivity {
     public boolean autenticarUsuario(){
         if(usuario.getText().toString().equals("hola@correo.com") &&
                 password.getText().toString().equals("12345")) {
-            this.estudiante = obtenerEstudiante("temp","temp");
+            Estudiante.setInstance(obtenerEstudiante("temp","temp"));
             return true;
         }
         return false;
@@ -63,7 +61,6 @@ public class PantallaAutenticacion extends AppCompatActivity {
     }
     public void abrirPantallaPrincipal(){
         Intent intent = new Intent(this, PantallaPrincipal.class);
-        intent.putExtra("Estudiante", this.estudiante);
         startActivity(intent);
     }
 }

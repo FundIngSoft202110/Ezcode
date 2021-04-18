@@ -10,7 +10,17 @@ public class Estudiante implements Serializable {
     private int ID;
     private int EZpuntos;
     private ArrayList<Meta> Metas;
+    private static Estudiante instance;
 
+    public static synchronized Estudiante getInstance(){
+        if(instance == null){
+            instance = new Estudiante();
+        }
+        return instance;
+    }
+    public static synchronized void setInstance(Estudiante estudiante){
+        instance = estudiante;
+    }
     public Estudiante() {
     }
 

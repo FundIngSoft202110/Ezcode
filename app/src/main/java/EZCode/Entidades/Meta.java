@@ -1,8 +1,11 @@
 package EZCode.Entidades;
 
-import java.util.Date;
 
-public class Meta {
+import java.io.Serializable;
+import java.util.Date;
+import java.util.Objects;
+
+public class Meta implements Serializable {
     private String nombre;
     private String descripcion;
     private int prioridad;
@@ -15,6 +18,34 @@ public class Meta {
         this.prioridad = prioridad;
         this.progreso = progreso;
         this.fechaInicio = fechaInicio;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Meta)) return false;
+        Meta meta = (Meta) o;
+        return getPrioridad() == meta.getPrioridad() &&
+                getProgreso() == meta.getProgreso() &&
+                getNombre().equals(meta.getNombre()) &&
+                getDescripcion().equals(meta.getDescripcion()) &&
+                getFechaInicio().equals(meta.getFechaInicio());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getNombre(), getDescripcion(), getPrioridad(), getProgreso(), getFechaInicio());
+    }
+
+    @Override
+    public String toString() {
+        return "Meta{" +
+                "nombre='" + nombre + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                ", prioridad=" + prioridad +
+                ", progreso=" + progreso +
+                ", fechaInicio=" + fechaInicio +
+                '}';
     }
 
     public Meta() {
