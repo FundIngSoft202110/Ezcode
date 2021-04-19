@@ -10,7 +10,16 @@ public class Estudiante implements Serializable {
     private int ID;
     private int EZpuntos;
     private ArrayList<Meta> Metas;
+    private ArrayList<Evento> horario;
     private static Estudiante instance;
+
+    public ArrayList<Evento> getHorario() {
+        return horario;
+    }
+
+    public void setHorario(ArrayList<Evento> horario) {
+        this.horario = horario;
+    }
 
     public static synchronized Estudiante getInstance(){
         if(instance == null){
@@ -22,6 +31,8 @@ public class Estudiante implements Serializable {
         instance = estudiante;
     }
     public Estudiante() {
+        this.Metas = new ArrayList<>();
+        this.horario = new ArrayList<>();
     }
 
     public Estudiante(String nombre, String correo, String password, int ID, int EZpuntos) {
@@ -31,6 +42,7 @@ public class Estudiante implements Serializable {
         this.ID = ID;
         this.EZpuntos = EZpuntos;
         this.Metas = new ArrayList<>();
+        this.horario = new ArrayList<>();
     }
 
     public String getNombre() {

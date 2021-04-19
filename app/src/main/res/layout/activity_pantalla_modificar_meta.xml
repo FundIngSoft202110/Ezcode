@@ -97,10 +97,9 @@
         android:id="@+id/botonBorrarMeta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="592dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="588dp"
         android:text="Eliminar Meta"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.115"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
