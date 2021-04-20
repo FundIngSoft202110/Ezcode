@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EZCode">
-        <activity android:name=".PantallaAgregarEvento"></activity>
+        <activity android:name=".PantallaAgregarEvento" />
         <activity android:name=".PantallaModificarMeta" />
         <activity android:name=".PantallaAgregarMeta" />
         <activity android:name=".PantallaRegistro" />

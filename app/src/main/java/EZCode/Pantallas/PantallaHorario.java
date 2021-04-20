@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CalendarView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import EZCode.Entidades.Meta;
 
 public class PantallaHorario extends AppCompatActivity {
 
+    CalendarView calendario;
     Button botonVolverPantallaPrincipal;
     Button botonAgregarEvento;
     ListView listaEventos;
@@ -39,12 +41,13 @@ public class PantallaHorario extends AppCompatActivity {
         botonAgregarEvento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                abrirPantallaAgregarEvento();
             }
         });
 
     }
     private void iniciarlizarAtributos(){
+        calendario =  (CalendarView) findViewById(R.id.calendarView);
         botonAgregarEvento = (Button) findViewById(R.id.botonNuevoEvento);
         botonVolverPantallaPrincipal = (Button) findViewById(R.id.botonVolverPPrincipal);
         listaEventos = (ListView) findViewById(R.id.listaEventos);
@@ -61,7 +64,7 @@ public class PantallaHorario extends AppCompatActivity {
         startActivity(intent);
     }
     private void abrirPantallaAgregarEvento(){
-        Intent intent = new Intent(this, );
+        Intent intent = new Intent(this, PantallaAgregarEvento.class);
         startActivity(intent);
     }
 }

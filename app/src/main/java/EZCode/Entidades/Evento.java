@@ -1,13 +1,14 @@
 package EZCode.Entidades;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public abstract class Evento {
-    private Date horaInicial;
-    private Date horaFinal;
+    private Calendar horaInicial;
+    private Calendar horaFinal;
     private String nombre;
 
-    public Evento(Date horaInicial, Date horaFinal, String nombre) {
+    public Evento(Calendar horaInicial, Calendar horaFinal, String nombre) {
         this.horaInicial = horaInicial;
         this.horaFinal = horaFinal;
         this.nombre = nombre;
@@ -16,19 +17,19 @@ public abstract class Evento {
     public Evento() {
     }
 
-    public Date getHoraInicial() {
+    public Calendar getHoraInicial() {
         return horaInicial;
     }
 
-    public void setHoraInicial(Date horaInicial) {
+    public void setHoraInicial(Calendar horaInicial) {
         this.horaInicial = horaInicial;
     }
 
-    public Date getHoraFinal() {
+    public Calendar getHoraFinal() {
         return horaFinal;
     }
 
-    public void setHoraFinal(Date horaFinal) {
+    public void setHoraFinal(Calendar horaFinal) {
         this.horaFinal = horaFinal;
     }
 
