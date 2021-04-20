@@ -1,5 +1,6 @@
 package EZCode.Pantallas;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -11,6 +12,7 @@ import android.widget.CalendarView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import EZCode.Entidades.Estudiante;
 import EZCode.Entidades.Evento;
@@ -30,7 +32,14 @@ public class PantallaHorario extends AppCompatActivity {
         setContentView(R.layout.activity_pantalla_horario);
 
         iniciarlizarAtributos();
-        iniciarLista();
+        inicializarLista();
+
+        calendario.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
+                iniciarLista(year,month,dayOfMonth);
+            }
+        });
 
         botonVolverPantallaPrincipal.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,11 +62,20 @@ public class PantallaHorario extends AppCompatActivity {
         listaEventos = (ListView) findViewById(R.id.listaEventos);
         horario = new ArrayList<>();
     }
-    private void iniciarLista(){
-        for (Evento e: Estudiante.getInstance().getHorario()) {
-            horario.add(e.getNombre());
+    private void iniciarLista(int year, int month, int day){
+        horario.clear();
+        for (Evento e: Estudiante.getInstance().getHorario()){
+            if(e.getHoraInicial().get(Calendar.YEAR) == year &&
+                    e.getHoraInicial().get(Calendar.MONTH) == month &&
+                    e.getHoraInicial().get(Calendar.DAY_OF_MONTH) == day) {
+                horario.add(e.getNombre());
+            }
         }
         listaEventos.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, horario));
+    }
+    private void inicializarLista(){
+        Calendar calendar = Calendar.getInstance();
+        iniciarLista(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH));
     }
     private void volverPantallaPrincipal(){
         Intent intent = new Intent(this, PantallaPrincipal.class);
