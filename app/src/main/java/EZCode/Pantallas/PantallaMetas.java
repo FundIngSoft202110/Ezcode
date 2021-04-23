@@ -37,7 +37,7 @@ public class PantallaMetas extends AppCompatActivity {
         iniciarLista();
 
         if(Estudiante.getInstance().getMetas().size() == 0)
-            errores.setText("Parece que aun no tienes metas. Presiona el boton \"Agregar Meta\" para crear una meta nueva");
+            errores.setText("Parece que aun no tienes metas. Presiona el botón \"Agregar Meta\" para crear una meta nueva");
         else {
 
             errores.setText("Presione una meta para modificarla o borrarla");

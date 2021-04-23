@@ -25,7 +25,7 @@
         android:layout_marginTop="40dp"
         android:ems="10"
         android:gravity="start|top"
-        android:hint="Descripcion"
+        android:hint="Descripción"
         android:inputType="textMultiLine"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -75,6 +75,7 @@
         android:layout_marginTop="48dp"
         android:text="Agregar Meta"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/campoPrioridadMeta" />
 
