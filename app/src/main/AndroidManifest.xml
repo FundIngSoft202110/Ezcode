@@ -13,17 +13,14 @@
         <activity android:name=".PantallaModificarMeta" />
         <activity android:name=".PantallaAgregarMeta" />
         <activity android:name=".PantallaRegistro" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".PantallaMetas" />
+        <activity android:name=".PantallaHorario" />
+        <activity android:name=".PantallaAutenticacion">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PantallaMetas" />
-        <activity android:name=".PantallaHorario" />
-        <activity android:name=".PantallaPrincipal" />
-        <activity android:name=".PantallaAutenticacion" />
     </application>
 
 </manifest>

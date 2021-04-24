@@ -16,13 +16,13 @@ import java.util.Calendar;
 
 import EZCode.Entidades.Estudiante;
 import EZCode.Entidades.Evento;
-import EZCode.Entidades.Meta;
 
 public class PantallaHorario extends AppCompatActivity {
 
     CalendarView calendario;
-    Button botonVolverPantallaPrincipal;
+    Button botonCerrarSesion;
     Button botonAgregarEvento;
+    Button botonMetas;
     ListView listaEventos;
     ArrayList<String> horario;
     ArrayAdapter adapter;
@@ -41,10 +41,10 @@ public class PantallaHorario extends AppCompatActivity {
             }
         });
 
-        botonVolverPantallaPrincipal.setOnClickListener(new View.OnClickListener() {
+        botonCerrarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                volverPantallaPrincipal();
+                cerrarSesion();
             }
         });
         botonAgregarEvento.setOnClickListener(new View.OnClickListener() {
@@ -53,15 +53,15 @@ public class PantallaHorario extends AppCompatActivity {
                 abrirPantallaAgregarEvento();
             }
         });
+        botonMetas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                abrirPantallaMetas();
+            }
+        });
 
     }
-    private void iniciarlizarAtributos(){
-        calendario =  (CalendarView) findViewById(R.id.calendarView);
-        botonAgregarEvento = (Button) findViewById(R.id.botonNuevoEvento);
-        botonVolverPantallaPrincipal = (Button) findViewById(R.id.botonVolverPPrincipal);
-        listaEventos = (ListView) findViewById(R.id.listaEventos);
-        horario = new ArrayList<>();
-    }
+
     private void iniciarLista(int year, int month, int day){
         horario.clear();
         for (Evento e: Estudiante.getInstance().getHorario()){
@@ -77,12 +77,28 @@ public class PantallaHorario extends AppCompatActivity {
         Calendar calendar = Calendar.getInstance();
         iniciarLista(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH));
     }
-    private void volverPantallaPrincipal(){
-        Intent intent = new Intent(this, PantallaPrincipal.class);
+    /*
+    Este metodo debería cerrar la sesión del usuario, lo cuál debería llamar un método del controlador
+    que permita guardar todo en la BD, por ahora solo vuelve a la pantalla de autenticación
+     */
+    private void cerrarSesion(){
+        Intent intent = new Intent(this, PantallaAutenticacion.class);
         startActivity(intent);
     }
     private void abrirPantallaAgregarEvento(){
         Intent intent = new Intent(this, PantallaAgregarEvento.class);
         startActivity(intent);
+    }
+    private void abrirPantallaMetas(){
+        Intent intent = new Intent(this, PantallaMetas.class);
+        startActivity(intent);
+    }
+    private void iniciarlizarAtributos(){
+        calendario =  (CalendarView) findViewById(R.id.calendarView);
+        botonAgregarEvento = (Button) findViewById(R.id.botonNuevoEvento);
+        botonCerrarSesion = (Button) findViewById(R.id.botonCerrarSesion);
+        botonMetas = (Button) findViewById(R.id.botonMetas);
+        listaEventos = (ListView) findViewById(R.id.listaEventos);
+        horario = new ArrayList<>();
     }
 }

@@ -85,7 +85,7 @@ public class PantallaMetas extends AppCompatActivity {
         startActivity(intent);
     }
     private void volverPantallaPrincipal(){
-        Intent intent = new Intent(this, PantallaPrincipal.class);
+        Intent intent = new Intent(this, PantallaHorario.class);
         startActivity(intent);
     }
 }

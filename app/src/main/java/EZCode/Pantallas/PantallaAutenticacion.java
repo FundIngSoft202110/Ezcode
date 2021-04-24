@@ -17,16 +17,18 @@ import EZCode.Entidades.Estudiante;
 
 public class PantallaAutenticacion extends AppCompatActivity {
 
-    private Button botonInicio;
-    private TextView error;
-    private EditText usuario;
-    private EditText password;
+    Button botonInicio;
+    Button botonRegistro;
+    TextView error;
+    EditText usuario;
+    EditText password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pantalla_autenticacion);
 
         botonInicio = (Button) findViewById(R.id.botonInicioSesion);
+        botonRegistro = (Button) findViewById(R.id.botonRegistro);
         usuario =  (EditText) findViewById(R.id.campoCorreo);
         password = (EditText) findViewById(R.id.campoPassword);
         error = (TextView) findViewById(R.id.Errores);
@@ -40,6 +42,10 @@ public class PantallaAutenticacion extends AppCompatActivity {
                 else
                     error.setText("El usuario y contraseña son incorrectos");
             }
+        });
+        botonRegistro.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) { abrirPantallaRegistro(); }
         });
     }
     /*
@@ -60,7 +66,11 @@ public class PantallaAutenticacion extends AppCompatActivity {
         return new Estudiante("Daniel","hola@correo.com","12345",1,0);
     }
     public void abrirPantallaPrincipal(){
-        Intent intent = new Intent(this, PantallaPrincipal.class);
+        Intent intent = new Intent(this, PantallaHorario.class);
+        startActivity(intent);
+    }
+    public void abrirPantallaRegistro(){
+        Intent intent = new Intent(this, PantallaRegistro.class);
         startActivity(intent);
     }
 }

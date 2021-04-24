@@ -39,24 +39,23 @@
         android:id="@+id/botonNuevoEvento"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="584dp"
+        android:layout_marginTop="20dp"
         android:text="Agregar evento"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.934"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="0.627"
+        app:layout_constraintStart_toEndOf="@+id/botonMetas"
+        app:layout_constraintTop_toBottomOf="@+id/listaEventos" />
 
     <Button
-        android:id="@+id/botonVolverPPrincipal"
+        android:id="@+id/botonCerrarSesion"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Volver a la pantalla principal"
+        android:text="Cerrar sesión"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/botonNuevoEvento"
-        app:layout_constraintVertical_bias="0.392" />
+        app:layout_constraintVertical_bias="0.386" />
 
     <CalendarView
         android:id="@+id/calendarView"
@@ -66,5 +65,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/botonMetas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="20dp"
+        android:text="Ver mis metas"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listaEventos" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
