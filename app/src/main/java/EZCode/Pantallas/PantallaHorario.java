@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CalendarView;
@@ -25,6 +26,7 @@ public class PantallaHorario extends AppCompatActivity {
     Button botonMetas;
     ListView listaEventos;
     ArrayList<String> horario;
+    ArrayList<Evento> eventosDia;
     ArrayAdapter adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,16 @@ public class PantallaHorario extends AppCompatActivity {
 
         iniciarlizarAtributos();
         inicializarLista();
+
+        listaEventos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
+                Intent intent = new Intent(getApplicationContext(), PantallaModificarEvento.class);
+                intent.putExtra("Evento",eventosDia.get(position));
+                intent.putExtra("indice", position);
+                startActivity(intent);
+            }
+        });
 
         calendario.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
@@ -68,7 +80,8 @@ public class PantallaHorario extends AppCompatActivity {
             if(e.getHoraInicial().get(Calendar.YEAR) == year &&
                     e.getHoraInicial().get(Calendar.MONTH) == month &&
                     e.getHoraInicial().get(Calendar.DAY_OF_MONTH) == day) {
-                horario.add(e.getNombre());
+                horario.add(e.getNombre()+"-"+e.getHoraInicial().get(Calendar.HOUR_OF_DAY)+":"+e.getHoraInicial().get(Calendar.MINUTE));
+                eventosDia.add(e);
             }
         }
         listaEventos.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, horario));
@@ -100,5 +113,6 @@ public class PantallaHorario extends AppCompatActivity {
         botonMetas = (Button) findViewById(R.id.botonMetas);
         listaEventos = (ListView) findViewById(R.id.listaEventos);
         horario = new ArrayList<>();
+        eventosDia = new ArrayList<>();
     }
 }

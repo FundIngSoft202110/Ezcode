@@ -1,7 +1,9 @@
 package EZCode.Entidades;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class Clase extends Evento{
     private String profesor;
@@ -11,6 +13,14 @@ public class Clase extends Evento{
         super(horaInicial, horaFinal, nombre);
         this.profesor = profesor;
         this.salon = salon;
+    }
+
+    @Override
+    public List<String> getSubAtributos() {
+        List<String> retorno = new ArrayList<>();
+        retorno.add(profesor);
+        retorno.add(salon);
+        return retorno;
     }
 
     public Clase() {

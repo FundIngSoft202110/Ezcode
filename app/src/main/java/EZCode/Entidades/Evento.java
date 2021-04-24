@@ -1,12 +1,17 @@
 package EZCode.Entidades;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
-public abstract class Evento {
+public abstract class Evento implements Serializable {
     private Calendar horaInicial;
     private Calendar horaFinal;
     private String nombre;
+
+    public abstract List<String> getSubAtributos();
 
     public Evento(Calendar horaInicial, Calendar horaFinal, String nombre) {
         this.horaInicial = horaInicial;
