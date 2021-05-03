@@ -5,11 +5,21 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 public abstract class Evento implements Serializable {
     private Calendar horaInicial;
     private Calendar horaFinal;
     private String nombre;
+    private int ID;
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
 
     public abstract List<String> getSubAtributos();
 
@@ -17,6 +27,22 @@ public abstract class Evento implements Serializable {
         this.horaInicial = horaInicial;
         this.horaFinal = horaFinal;
         this.nombre = nombre;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if(o != null && o.getClass() == getClass()) {
+            Evento evento = (Evento) o;
+            return Objects.equals(getHoraInicial(), evento.getHoraInicial()) &&
+                    Objects.equals(getHoraFinal(), evento.getHoraFinal()) &&
+                    Objects.equals(getNombre(), evento.getNombre());
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getHoraInicial(), getHoraFinal(), getNombre());
     }
 
     public Evento() {

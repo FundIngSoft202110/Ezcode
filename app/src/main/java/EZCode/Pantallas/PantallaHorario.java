@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ListView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -41,7 +42,6 @@ public class PantallaHorario extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapter, View view, int position, long id) {
                 Intent intent = new Intent(getApplicationContext(), PantallaModificarEvento.class);
                 intent.putExtra("Evento",eventosDia.get(position));
-                intent.putExtra("indice", position);
                 startActivity(intent);
             }
         });
@@ -76,13 +76,17 @@ public class PantallaHorario extends AppCompatActivity {
 
     private void iniciarLista(int year, int month, int day){
         horario.clear();
+        int i = 0;
         for (Evento e: Estudiante.getInstance().getHorario()){
+            e.setID(i);
             if(e.getHoraInicial().get(Calendar.YEAR) == year &&
                     e.getHoraInicial().get(Calendar.MONTH) == month &&
                     e.getHoraInicial().get(Calendar.DAY_OF_MONTH) == day) {
-                horario.add(e.getNombre()+"-"+e.getHoraInicial().get(Calendar.HOUR_OF_DAY)+":"+e.getHoraInicial().get(Calendar.MINUTE));
+                SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm");
+                horario.add(e.getNombre()+"--"+dateFormat.format(e.getHoraInicial().getTime()));
                 eventosDia.add(e);
             }
+            i++;
         }
         listaEventos.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, horario));
     }

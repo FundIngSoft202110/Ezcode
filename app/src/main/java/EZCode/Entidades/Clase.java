@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 
 public class Clase extends Evento{
     private String profesor;
@@ -22,6 +23,30 @@ public class Clase extends Evento{
         retorno.add(salon);
         return retorno;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Clase)) return false;
+        if (!super.equals(o)) return false;
+        Clase clase = (Clase) o;
+        return Objects.equals(getProfesor(), clase.getProfesor()) &&
+                Objects.equals(getSalon(), clase.getSalon());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), getProfesor(), getSalon());
+    }
+
+    @Override
+    public String toString() {
+        return "Clase{" +
+                "profesor='" + profesor + '\'' +
+                ", salon='" + salon + '\'' +
+                '}';
+    }
+
 
     public Clase() {
     }

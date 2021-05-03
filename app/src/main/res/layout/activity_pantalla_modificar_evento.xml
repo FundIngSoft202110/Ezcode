@@ -107,27 +107,26 @@
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/campoModificarFechaFin" />
 
-  <TextView
-      android:id="@+id/textView15"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="100dp"
-      android:layout_marginTop="16dp"
-      android:text="Descripción"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/campoModificarProfesorEvento" />
-
   <EditText
       android:id="@+id/campoModificarDescripcionEvento"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginStart="100dp"
-      android:layout_marginTop="12dp"
+      android:layout_marginTop="32dp"
       android:ems="10"
       android:hint="Descripción"
       android:inputType="textPersonName"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+  <TextView
+      android:id="@+id/textView15"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="112dp"
+      android:text="Descripción"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/campoModificarFechaFin" />
 
   <TextView
       android:id="@+id/textView16"
@@ -155,10 +154,20 @@
       android:id="@+id/botonModificarEvento"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginTop="12dp"
+      android:layout_marginTop="36dp"
       android:text="Confirmar cambios"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHorizontal_bias="0.497"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/campoMOdificarSalonEvento" />
+
+  <Button
+      android:id="@+id/botonEliminarEvento"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="20dp"
+      android:text="Eliminar evento"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/botonModificarEvento" />
 </androidx.constraintlayout.widget.ConstraintLayout>

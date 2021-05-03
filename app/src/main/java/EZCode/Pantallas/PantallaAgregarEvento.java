@@ -76,6 +76,10 @@ public class PantallaAgregarEvento extends AppCompatActivity {
         botonAgregarEvento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(verificarCampos()) {
+                    error.setText("Verifique que todos los campos estén corrctamente llenos");
+                    return;
+                }
                 String nombre = campoNombre.getText().toString();
                 if(controlHorario.verificarFecha(fechaInicio,fechaFin)){
                     error.setText("Las fechas son incorrectas");
@@ -151,6 +155,15 @@ public class PantallaAgregarEvento extends AppCompatActivity {
         new DatePickerDialog(PantallaAgregarEvento.this,dateSetListener,
                 fechaFin.get(Calendar.YEAR),fechaFin.get(Calendar.MONTH),
                 fechaFin.get(Calendar.DAY_OF_MONTH)).show();
+    }
+    private boolean verificarCampos(){
+        if(campoNombre.getText().toString() == "" || campoFechaInicial.getText().toString() == "" || campoFechaFin.getText().toString() == "")
+            return false;
+        if(esClase.isChecked() && (campoProfesor.getText().toString() == "" || campoSalon.getText().toString() == ""))
+            return false;
+        if(!esClase.isChecked() && campoDescripcion.getText().toString() == "")
+            return false;
+        return true;
     }
     private void iniciarAtributos(){
         controlHorario = new ControlHorario();

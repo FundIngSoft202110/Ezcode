@@ -45,19 +45,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textoErrorMeta" />
 
-    <EditText
-        android:id="@+id/campoPrioridadMeta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:ems="10"
-        android:hint="Prioridad"
-        android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/campoDescripcionMeta" />
-
     <TextView
         android:id="@+id/textoErrorMeta"
         android:layout_width="wrap_content"
@@ -72,12 +59,12 @@
         android:id="@+id/botonAgregarMeta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="72dp"
         android:text="Agregar Meta"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/campoPrioridadMeta" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerPrioridad" />
 
     <Button
         android:id="@+id/botonCancelarMetaNueva"
@@ -88,5 +75,28 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/botonAgregarMeta" />
+
+    <Spinner
+        android:id="@+id/spinnerPrioridad"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/campoDescripcionMeta" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:text="Prioridad (1=alta, 5=baja)"
+        app:layout_constraintBottom_toTopOf="@+id/spinnerPrioridad"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/campoDescripcionMeta"
+        app:layout_constraintVertical_bias="0.517" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,16 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
-
-import org.w3c.dom.Text;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -22,11 +21,14 @@ import java.util.List;
 
 import EZCode.Entidades.Actividad;
 import EZCode.Entidades.Clase;
+import EZCode.Entidades.Estudiante;
 import EZCode.Entidades.Evento;
+import EZCode.Horario.ControlHorario;
 
 public class PantallaModificarEvento extends AppCompatActivity {
 
     Button botonModificarEvento;
+    Button botonEliminarEvento;
     Calendar fechaInicio;
     Calendar fechaFin;
     TextView profesor;
@@ -38,8 +40,9 @@ public class PantallaModificarEvento extends AppCompatActivity {
     EditText campoProfesor;
     EditText campoSalon;
     EditText campoDescripcion;
+
     Evento evento;
-    int indice;
+    private ControlHorario controlHorario;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +51,36 @@ public class PantallaModificarEvento extends AppCompatActivity {
         iniciarAtributos();
         llenarCampos();
 
+        botonEliminarEvento.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                controlHorario.eliminarEvento(evento);
+                volverPantallaHorario();
+            }
+        });
+        botonModificarEvento.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(fechaInicio == null && fechaFin == null){
+                    fechaInicio = evento.getHoraInicial();
+                    fechaFin = evento.getHoraFinal();
+                }
+                if(evento instanceof Clase){
+                    Evento event = new Clase(fechaInicio,fechaFin,campoNombre.getText().toString(),
+                            campoProfesor.getText().toString(),campoSalon.getText().toString());
+                    event.setID(evento.getID());
+                    controlHorario.modificarEvento(event);
+                }
+                else{
+                    Evento event = new Actividad(fechaInicio,fechaFin,campoNombre.getText().toString(),
+                            campoDescripcion.getText().toString());
+                    event.setID(evento.getID());
+                    controlHorario.modificarEvento(event);
+                }
+                SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd HH:mm");
+                volverPantallaHorario();
+            }
+        });
         campoFechaInicio.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,8 +169,13 @@ public class PantallaModificarEvento extends AppCompatActivity {
                 fechaFin.get(Calendar.YEAR),fechaFin.get(Calendar.MONTH),
                 fechaFin.get(Calendar.DAY_OF_MONTH)).show();
     }
+    private void volverPantallaHorario(){
+        Intent intent = new Intent(this,PantallaHorario.class);
+        startActivity(intent);
+    }
     private void iniciarAtributos(){
         botonModificarEvento = (Button) findViewById(R.id.botonModificarEvento);
+        botonEliminarEvento = (Button) findViewById(R.id.botonEliminarEvento);
         profesor = (TextView) findViewById(R.id.textView14);
         descripcion = (TextView) findViewById(R.id.textView15);
         salon = (TextView) findViewById(R.id.textView16);
@@ -148,6 +186,6 @@ public class PantallaModificarEvento extends AppCompatActivity {
         campoSalon = (EditText) findViewById(R.id.campoMOdificarSalonEvento);
         campoDescripcion = (EditText) findViewById(R.id.campoModificarDescripcionEvento);
         evento = (Evento) getIntent().getSerializableExtra("Evento");
-        indice = (int) getIntent().getSerializableExtra("indice");
+        controlHorario = new ControlHorario();
     }
 }
