@@ -76,7 +76,7 @@ public class PantallaAgregarEvento extends AppCompatActivity {
         botonAgregarEvento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(verificarCampos()) {
+                if(!verificarCampos()) {
                     error.setText("Verifique que todos los campos estén corrctamente llenos");
                     return;
                 }
@@ -157,9 +157,9 @@ public class PantallaAgregarEvento extends AppCompatActivity {
                 fechaFin.get(Calendar.DAY_OF_MONTH)).show();
     }
     private boolean verificarCampos(){
-        if(campoNombre.getText().toString() == "" || campoFechaInicial.getText().toString() == "" || campoFechaFin.getText().toString() == "")
+        if(campoNombre.getText().toString().equals("") || campoFechaInicial.getText().toString().equals("") || campoFechaFin.getText().toString().equals(""))
             return false;
-        if(esClase.isChecked() && (campoProfesor.getText().toString() == "" || campoSalon.getText().toString() == ""))
+        if(esClase.isChecked() && (campoProfesor.getText().toString().equals("") || campoSalon.getText().toString().equals("")))
             return false;
         if(!esClase.isChecked() && campoDescripcion.getText().toString() == "")
             return false;
