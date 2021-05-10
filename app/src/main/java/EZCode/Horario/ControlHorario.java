@@ -1,11 +1,15 @@
 package EZCode.Horario;
 
 import java.util.Calendar;
+import java.util.List;
 
 import EZCode.Entidades.*;
 
 public class ControlHorario {
 
+    public void agregarRepeticiones(List<String> dias,int repeticiones){
+
+    }
     public void agregarEvento(Evento evento){
         evento.setID(Estudiante.getInstance().getHorario().size());
         Estudiante.getInstance().getHorario().add(evento);
