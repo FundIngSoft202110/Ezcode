@@ -24,6 +24,7 @@ public class Actividad extends Evento{
     @Override
     public String toString() {
         return "Actividad{" +
+                super.toString() +
                 "descripcion='" + descripcion + '\'' +
                 '}';
     }
@@ -52,4 +53,5 @@ public class Actividad extends Evento{
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
 }

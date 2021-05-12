@@ -21,12 +21,12 @@
         android:id="@+id/campoNumeroRepeticionesEvento"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="Cuántas veces se repite el evento?"
         android:inputType="number"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.252"
+        app:layout_constraintHorizontal_bias="0.189"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView23" />
 
@@ -70,7 +70,7 @@
         android:layout_marginTop="16dp"
         android:text="Miércoles"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.238"
+        app:layout_constraintHorizontal_bias="0.109"
         app:layout_constraintStart_toEndOf="@+id/checkMartes"
         app:layout_constraintTop_toBottomOf="@+id/textView24" />
 
@@ -88,8 +88,8 @@
         android:id="@+id/cehckViernes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
         android:text="Viernes"
         app:layout_constraintStart_toEndOf="@+id/checkJueves"
         app:layout_constraintTop_toBottomOf="@+id/checkMartes" />
@@ -110,20 +110,11 @@
         android:id="@+id/checkDomingo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="120dp"
+        android:layout_marginStart="124dp"
         android:layout_marginTop="16dp"
         android:text="Domingo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cehckViernes" />
-
-    <TextView
-        android:id="@+id/textoErrorRepeticion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView23" />
 
     <Button
         android:id="@+id/botonConfirmarRepeticion"
