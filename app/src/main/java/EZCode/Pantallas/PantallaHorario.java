@@ -15,9 +15,13 @@ import android.widget.ListView;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 import EZCode.Entidades.Estudiante;
 import EZCode.Entidades.Evento;
+import EZCode.Horario.ControlHorario;
 
 public class PantallaHorario extends AppCompatActivity {
 
@@ -26,9 +30,10 @@ public class PantallaHorario extends AppCompatActivity {
     Button botonAgregarEvento;
     Button botonMetas;
     ListView listaEventos;
-    ArrayList<String> horario;
-    ArrayList<Evento> eventosDia;
+    List<String> horario;
+    List<Evento> eventosDia;
     ArrayAdapter adapter;
+    ControlHorario controlHorario = new ControlHorario();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
