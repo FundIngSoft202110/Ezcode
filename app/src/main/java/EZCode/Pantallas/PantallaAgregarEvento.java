@@ -3,21 +3,28 @@ package EZCode.Pantallas;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.nio.file.ProviderNotFoundException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import EZCode.Entidades.Actividad;
 import EZCode.Entidades.Clase;
@@ -32,18 +39,52 @@ public class PantallaAgregarEvento extends AppCompatActivity {
     EditText campoDescripcion;
     EditText campoProfesor;
     EditText campoSalon;
-    TextView error;
+    TextView textoRepeticiones;
     Calendar fechaInicio;
     Calendar fechaFin;
     Switch esClase;
+    Button repeticionEvento;
     Button botonAgregarEvento;
     ControlHorario controlHorario;
+    List<String> repeticiones = new ArrayList<>();
+    int cantRepeticiones = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_agregar_evento);
 
         iniciarAtributos();
+
+        botonAgregarEvento.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!verificarCampos()) {
+                    Toast.makeText(getApplicationContext(),
+                            "Verifique que todos los campos estén corrctamente llenos",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                String nombre = campoNombre.getText().toString();
+                if(controlHorario.verificarFecha(fechaInicio,fechaFin)){
+                    Toast.makeText(getApplicationContext(),
+                            "Las fechas son incorrectas",Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if(esClase.isChecked()){
+                    String profesor, salon;
+                    profesor = campoProfesor.getText().toString();
+                    salon = campoSalon.getText().toString();
+                    Evento evento = new Clase(fechaInicio,fechaFin,nombre,profesor,salon);
+                    controlHorario.agregarEvento(evento, repeticiones,cantRepeticiones);
+                }
+                else{
+                    String desc = campoDescripcion.getText().toString();
+                    Evento evento = new Actividad(fechaInicio,fechaFin,nombre,desc);
+                    controlHorario.agregarEvento(evento, repeticiones, cantRepeticiones);
+                }
+                volverPantallaHorario();
+            }
+        });
 
         esClase.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -73,16 +114,16 @@ public class PantallaAgregarEvento extends AppCompatActivity {
                 mostrarDialogoFechaFin();
             }
         });
-        botonAgregarEvento.setOnClickListener(new View.OnClickListener() {
+        repeticionEvento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(!verificarCampos()) {
-                    error.setText("Verifique que todos los campos estén corrctamente llenos");
+                    Toast.makeText(getApplicationContext(),"Verifique que todos los campos estén corrctamente llenos",Toast.LENGTH_SHORT).show();
                     return;
                 }
                 String nombre = campoNombre.getText().toString();
                 if(controlHorario.verificarFecha(fechaInicio,fechaFin)){
-                    error.setText("Las fechas son incorrectas");
+                    Toast.makeText(getApplicationContext(),"Las fechas son incorrectas",Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(esClase.isChecked()){
@@ -90,16 +131,62 @@ public class PantallaAgregarEvento extends AppCompatActivity {
                     profesor = campoProfesor.getText().toString();
                     salon = campoSalon.getText().toString();
                     Evento evento = new Clase(fechaInicio,fechaFin,nombre,profesor,salon);
-                    controlHorario.agregarEvento(evento);
+                    controlHorario.agregarEvento(evento,repeticiones,cantRepeticiones);
                 }
-                else{
+                else {
                     String desc = campoDescripcion.getText().toString();
-                    Evento evento = new Actividad(fechaInicio,fechaFin,nombre,desc);
-                    controlHorario.agregarEvento(evento);
+                    Evento evento = new Actividad(fechaInicio, fechaFin, nombre, desc);
+                    controlHorario.agregarEvento(evento,repeticiones,cantRepeticiones);
                 }
-                volverPantallaHorario();
+                mostrarDialogoRepeticion();
             }
         });
+    }
+
+    private void mostrarDialogoRepeticion(){
+        final Dialog dialogoRepeticion = new Dialog(this);
+        dialogoRepeticion.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialogoRepeticion.setCancelable(true);
+        dialogoRepeticion.setContentView(R.layout.dialogo_repeticion_evento);
+
+        EditText numRepeticiones = (EditText) dialogoRepeticion.findViewById(R.id.campoNumeroRepeticionesEvento);
+        CheckBox lunes = (CheckBox) dialogoRepeticion.findViewById(R.id.checkLunes);
+        CheckBox martes = (CheckBox) dialogoRepeticion.findViewById(R.id.checkMartes);
+        CheckBox miercoles = (CheckBox) dialogoRepeticion.findViewById(R.id.checkMiercoles);
+        CheckBox jueves = (CheckBox) dialogoRepeticion.findViewById(R.id.checkJueves);
+        CheckBox viernes = (CheckBox) dialogoRepeticion.findViewById(R.id.cehckViernes);
+        CheckBox sabado = (CheckBox) dialogoRepeticion.findViewById(R.id.checkSabado);
+        CheckBox domingo = (CheckBox) dialogoRepeticion.findViewById(R.id.checkDomingo);
+        Button confirmar = (Button) dialogoRepeticion.findViewById(R.id.botonConfirmarRepeticion);
+
+        confirmar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(numRepeticiones.getText().toString().equals(""))
+                    Toast.makeText(getApplicationContext(),
+                            "Por favor ingrese la cantidad de veces que el evento se repite",Toast.LENGTH_SHORT).show();
+                else {
+                    if (lunes.isChecked())
+                        repeticiones.add("lunes");
+                    if (martes.isChecked())
+                        repeticiones.add("martes");
+                    if (miercoles.isChecked())
+                        repeticiones.add("miercoles");
+                    if (jueves.isChecked())
+                        repeticiones.add("jueves");
+                    if (viernes.isChecked())
+                        repeticiones.add("viernes");
+                    if (sabado.isChecked())
+                        repeticiones.add("sabado");
+                    if (domingo.isChecked())
+                        repeticiones.add("domingo");
+                    textoRepeticiones.setText("El evento se repetirá los días" + repeticiones.toString());
+                    cantRepeticiones = Integer.parseInt(numRepeticiones.getText().toString());
+                    dialogoRepeticion.dismiss();
+                }
+            }
+        });
+        dialogoRepeticion.show();
     }
 
     private void mostrarDialogoFechaInicio(){
@@ -161,7 +248,7 @@ public class PantallaAgregarEvento extends AppCompatActivity {
             return false;
         if(esClase.isChecked() && (campoProfesor.getText().toString().equals("") || campoSalon.getText().toString().equals("")))
             return false;
-        if(!esClase.isChecked() && campoDescripcion.getText().toString() == "")
+        if(!esClase.isChecked() && campoDescripcion.getText().toString().equals(""))
             return false;
         return true;
     }
@@ -173,11 +260,12 @@ public class PantallaAgregarEvento extends AppCompatActivity {
         campoDescripcion = (EditText) findViewById(R.id.campoDescripcionActividad);
         campoProfesor = (EditText) findViewById(R.id.campoProfesorClase);
         campoSalon = (EditText) findViewById(R.id.campoSalonClase);
-        error = (TextView) findViewById(R.id.textoErrorEvento);
         esClase = (Switch) findViewById(R.id.switchTipoEvento);
         botonAgregarEvento = (Button) findViewById(R.id.botonAgregarEvento);
         campoProfesor.setVisibility(View.INVISIBLE);
         campoSalon.setVisibility(View.INVISIBLE);
+        repeticionEvento = (Button) findViewById(R.id.botonRepeticionEvento);
+        textoRepeticiones = (TextView) findViewById(R.id.textoRepeticion);
     }
     private void volverPantallaHorario(){
         Intent intent = new Intent(this,PantallaHorario.class);

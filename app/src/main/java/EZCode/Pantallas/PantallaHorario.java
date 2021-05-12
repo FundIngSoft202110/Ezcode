@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -17,9 +18,13 @@ import com.google.firebase.auth.FirebaseAuth;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 import EZCode.Entidades.Estudiante;
 import EZCode.Entidades.Evento;
+import EZCode.Horario.ControlHorario;
 
 public class PantallaHorario extends AppCompatActivity {
 
@@ -27,12 +32,12 @@ public class PantallaHorario extends AppCompatActivity {
     Button botonCerrarSesion;
     Button botonAgregarEvento;
     Button botonMetas;
+    List<String> horario;
+    List<Evento> eventosDia;
     ListView listaEventos;
-    ArrayList<String> horario;
-    ArrayList<Evento> eventosDia;
     private FirebaseAuth autenticar;
-
     ArrayAdapter adapter;
+    ControlHorario controlHorario = new ControlHorario();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

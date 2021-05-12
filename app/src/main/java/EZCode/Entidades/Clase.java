@@ -42,6 +42,7 @@ public class Clase extends Evento{
     @Override
     public String toString() {
         return "Clase{" +
+                super.toString() +
                 "profesor='" + profesor + '\'' +
                 ", salon='" + salon + '\'' +
                 '}';
@@ -66,4 +67,5 @@ public class Clase extends Evento{
     public void setSalon(String salon) {
         this.salon = salon;
     }
+
 }
