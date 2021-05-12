@@ -32,7 +32,6 @@ public class PantallaModificarEvento extends AppCompatActivity {
     Calendar fechaInicio;
     Calendar fechaFin;
     TextView profesor;
-    TextView errores;
     TextView descripcion;
     TextView salon;
     EditText campoNombre;
@@ -62,25 +61,22 @@ public class PantallaModificarEvento extends AppCompatActivity {
         botonModificarEvento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!verificarCampos()){
-                    errores.setText("Verifique que todos los campos estén llenos");
-                    return;
-                }
                 if(fechaInicio == null && fechaFin == null){
                     fechaInicio = evento.getHoraInicial();
                     fechaFin = evento.getHoraFinal();
                 }
-                Evento event;
                 if(evento instanceof Clase){
-                    event = new Clase(fechaInicio, fechaFin, campoNombre.getText().toString(),
-                            campoProfesor.getText().toString(), campoSalon.getText().toString());
+                    Evento event = new Clase(fechaInicio,fechaFin,campoNombre.getText().toString(),
+                            campoProfesor.getText().toString(),campoSalon.getText().toString());
+                    event.setID(evento.getID());
+                    controlHorario.modificarEvento(event);
                 }
                 else{
-                    event = new Actividad(fechaInicio, fechaFin, campoNombre.getText().toString(),
+                    Evento event = new Actividad(fechaInicio,fechaFin,campoNombre.getText().toString(),
                             campoDescripcion.getText().toString());
+                    event.setID(evento.getID());
+                    controlHorario.modificarEvento(event);
                 }
-                event.setID(evento.getID());
-                controlHorario.modificarEvento(event);
                 SimpleDateFormat format = new SimpleDateFormat("yy-MM-dd HH:mm");
                 volverPantallaHorario();
             }
@@ -118,15 +114,6 @@ public class PantallaModificarEvento extends AppCompatActivity {
             campoProfesor.setText(lista.get(0));
             campoSalon.setText(lista.get(1));
         }
-    }
-    private boolean verificarCampos(){
-        if(campoNombre.getText().toString().equals("") || campoFechaInicio.getText().toString().equals("") || campoFechaFin.getText().toString().equals(""))
-            return false;
-        if(evento instanceof Clase && (campoProfesor.getText().toString().equals("") || campoSalon.getText().toString().equals("")))
-            return false;
-        if(evento instanceof Actividad && (campoDescripcion.getText().toString().equals("")))
-            return false;
-        return true;
     }
     private void mostrarDialogoFechaInicio(){
         fechaInicio = Calendar.getInstance();
@@ -190,7 +177,6 @@ public class PantallaModificarEvento extends AppCompatActivity {
         botonModificarEvento = (Button) findViewById(R.id.botonModificarEvento);
         botonEliminarEvento = (Button) findViewById(R.id.botonEliminarEvento);
         profesor = (TextView) findViewById(R.id.textView14);
-        errores = (TextView) findViewById(R.id.textoErroresModificarEvento);
         descripcion = (TextView) findViewById(R.id.textView15);
         salon = (TextView) findViewById(R.id.textView16);
         campoNombre = (EditText) findViewById(R.id.campoModificarNombreEvento);
