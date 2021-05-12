@@ -43,5 +43,3 @@ dependencies {
     implementation 'com.firebaseui:firebase-ui-auth:6.4.0'
 
 }
-
-apply plugin: 'com.google.gms.google-services'
