@@ -117,27 +117,6 @@ public class PantallaAgregarEvento extends AppCompatActivity {
         repeticionEvento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!verificarCampos()) {
-                    Toast.makeText(getApplicationContext(), "Verifique que todos los campos estén corrctamente llenos",Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                String nombre = campoNombre.getText().toString();
-                if(controlHorario.verificarFecha(fechaInicio,fechaFin)){
-                    Toast.makeText(getApplicationContext(), "Las fechas son incorrectas",Toast.LENGTH_SHORT).show();
-                    return;
-                }
-                if(esClase.isChecked()){
-                    String profesor, salon;
-                    profesor = campoProfesor.getText().toString();
-                    salon = campoSalon.getText().toString();
-                    Evento evento = new Clase(fechaInicio,fechaFin,nombre,profesor,salon);
-                    controlHorario.agregarEvento(evento,repeticiones,cantRepeticiones);
-                }
-                else{
-                    String desc = campoDescripcion.getText().toString();
-                    Evento evento = new Actividad(fechaInicio,fechaFin,nombre,desc);
-                    controlHorario.agregarEvento(evento,repeticiones,cantRepeticiones);
-                }
                 mostrarDialogoRepeticion();
             }
         });

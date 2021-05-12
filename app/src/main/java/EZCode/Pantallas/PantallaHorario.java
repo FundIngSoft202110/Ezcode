@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -12,8 +11,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ListView;
-
-import com.google.firebase.auth.FirebaseAuth;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -35,15 +32,13 @@ public class PantallaHorario extends AppCompatActivity {
     ListView listaEventos;
     List<String> horario;
     List<Evento> eventosDia;
-    private FirebaseAuth autenticar;
-
     ArrayAdapter adapter;
     ControlHorario controlHorario = new ControlHorario();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_horario);
-        autenticar = FirebaseAuth.getInstance();
+
         iniciarlizarAtributos();
         inicializarLista();
 
@@ -66,9 +61,7 @@ public class PantallaHorario extends AppCompatActivity {
         botonCerrarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               autenticar.signOut();  // firebase signout
-               cerrarSesion();
-               finish();
+                cerrarSesion();
             }
         });
         botonAgregarEvento.setOnClickListener(new View.OnClickListener() {
