@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -51,12 +52,12 @@ public class PantallaHorario extends AppCompatActivity {
             }
         });
 
-        calendario.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+        /*calendario.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 iniciarLista(year,month,dayOfMonth);
             }
-        });
+        });*/
 
         botonCerrarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
