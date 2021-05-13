@@ -42,6 +42,7 @@ public class PantallaHorario extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_horario);
 
+        autenticar = FirebaseAuth.getInstance();
         iniciarlizarAtributos();
         inicializarLista();
 
@@ -64,7 +65,9 @@ public class PantallaHorario extends AppCompatActivity {
         botonCerrarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                autenticar.signOut();
                 cerrarSesion();
+                finish();
             }
         });
         botonAgregarEvento.setOnClickListener(new View.OnClickListener() {

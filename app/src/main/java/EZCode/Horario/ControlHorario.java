@@ -19,34 +19,36 @@ public class ControlHorario {
         if(numRepeticiones == 0) {
             evento.setID(Estudiante.getInstance().getHorario().size());
             Estudiante.getInstance().getHorario().add(evento);
-            return;
         }
-        for (int i = 0; i < numRepeticiones; i++){
-            for (String dia : dias) {
-                Calendar inicio = Calendar.getInstance();
-                Calendar fin = Calendar.getInstance();
-                inicio.set(evento.getHoraInicial().get(Calendar.YEAR),evento.getHoraInicial().get(Calendar.MONTH),
-                        evento.getHoraInicial().get(Calendar.DATE),evento.getHoraInicial().get(Calendar.HOUR),
-                        evento.getHoraInicial().get(Calendar.MINUTE));
-                fin.set(evento.getHoraFinal().get(Calendar.YEAR),evento.getHoraFinal().get(Calendar.MONTH),
-                        evento.getHoraFinal().get(Calendar.DATE),evento.getHoraFinal().get(Calendar.HOUR),
-                        evento.getHoraFinal().get(Calendar.MINUTE));
-                inicio.set(Calendar.DAY_OF_WEEK,convertirDia(dia));
-                inicio.add(Calendar.WEEK_OF_YEAR,i);
-                Log.d("Control", "Inicio: " + df.format(inicio.getTime()));
-                fin.set(Calendar.DAY_OF_WEEK,convertirDia(dia));
-                fin.add(Calendar.WEEK_OF_YEAR,i);
-                Log.d("Control", "Fin: " + df.format(fin.getTime()));
-                if(evento instanceof Clase){
-                    Estudiante.getInstance().getHorario().add(new Clase(inicio,fin,evento.getNombre(),
-                            ((Clase)evento).getProfesor(),((Clase)evento).getSalon()));
-                }
-                else{
-                    Estudiante.getInstance().getHorario().add(new Actividad(inicio,fin,evento.getNombre(),
-                            ((Actividad)evento).getDescripcion()));
-                }
-            }
+        else{
             Log.d("Control", "Lista: " + Estudiante.getInstance().getHorario().toString());
+            for (int i = 0; i < numRepeticiones; i++){
+                for (String dia : dias) {
+                    Calendar inicio = Calendar.getInstance();
+                    Calendar fin = Calendar.getInstance();
+                    inicio.set(evento.getHoraInicial().get(Calendar.YEAR),evento.getHoraInicial().get(Calendar.MONTH),
+                            evento.getHoraInicial().get(Calendar.DATE),evento.getHoraInicial().get(Calendar.HOUR),
+                            evento.getHoraInicial().get(Calendar.MINUTE));
+                    fin.set(evento.getHoraFinal().get(Calendar.YEAR),evento.getHoraFinal().get(Calendar.MONTH),
+                            evento.getHoraFinal().get(Calendar.DATE),evento.getHoraFinal().get(Calendar.HOUR),
+                            evento.getHoraFinal().get(Calendar.MINUTE));
+                    inicio.set(Calendar.DAY_OF_WEEK,convertirDia(dia));
+                    inicio.add(Calendar.WEEK_OF_YEAR,i);
+                    Log.d("Control", "Inicio: " + df.format(inicio.getTime()));
+                    fin.set(Calendar.DAY_OF_WEEK,convertirDia(dia));
+                    fin.add(Calendar.WEEK_OF_YEAR,i);
+                    Log.d("Control", "Fin: " + df.format(fin.getTime()));
+                    if(evento instanceof Clase){
+                        Estudiante.getInstance().getHorario().add(new Clase(inicio,fin,evento.getNombre(),
+                                ((Clase)evento).getProfesor(),((Clase)evento).getSalon()));
+                    }
+                    else{
+                        Estudiante.getInstance().getHorario().add(new Actividad(inicio,fin,evento.getNombre(),
+                                ((Actividad)evento).getDescripcion()));
+                    }
+                }
+                Log.d("Control", "Lista: " + Estudiante.getInstance().getHorario().toString());
+            }
         }
     }
     public Boolean verificarFecha(Calendar inicio, Calendar fin){
