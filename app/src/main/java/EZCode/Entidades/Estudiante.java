@@ -7,7 +7,7 @@ public class Estudiante implements Serializable {
     private String Nombre;
     private String Correo;
     private String Password;
-    private int ID;
+    private String ID;
     private int EZpuntos;
     private ArrayList<Meta> Metas;
     private ArrayList<Evento> horario;
