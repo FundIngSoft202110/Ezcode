@@ -35,7 +35,7 @@ public class Estudiante implements Serializable {
         this.horario = new ArrayList<>();
     }
 
-    public Estudiante(String nombre, String correo, String password, int ID, int EZpuntos) {
+    public Estudiante(String nombre, String correo, String password, String ID, int EZpuntos) {
         Nombre = nombre;
         Correo = correo;
         Password = password;
@@ -69,11 +69,11 @@ public class Estudiante implements Serializable {
         Password = password;
     }
 
-    public int getID() {
+    public String getID() {
         return ID;
     }
 
-    public void setID(int ID) {
+    public void setID(String ID) {
         this.ID = ID;
     }
 
