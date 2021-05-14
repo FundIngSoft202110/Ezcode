@@ -84,7 +84,7 @@ public class PantallaAutenticacion extends AppCompatActivity {
       desde la BD y crear una instancia de tipo Estudiante y retornarla.
      */
     public Estudiante obtenerEstudiante(String correo, String Password){
-        return new Estudiante("Daniel","hola@correo.com","12345",1,0);
+        return new Estudiante("Daniel","hola@correo.com","12345","",0);
     }
     public void abrirPantallaPrincipal(){
         Intent intent = new Intent(this, PantallaHorario.class);
