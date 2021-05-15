@@ -58,10 +58,6 @@ public class PantallaAutenticacion extends AppCompatActivity {
                 else {
                     Toast.makeText(PantallaAutenticacion.this, "Por Favor complete los campos", Toast.LENGTH_SHORT).show();
                 }
-
-                //  if(autenticarUsuario()) { abrirPantallaPrincipal(); }
-
-                //  else error.setText("El usuario y contraseña son incorrectos");
             }
         });
         botonRegistro.setOnClickListener(new View.OnClickListener() {
