@@ -34,6 +34,7 @@ public class PantallaAutenticacion extends AppCompatActivity {
     String email ="";
     String contraseña ="";
     FirebaseAuth autenticacion;
+    Estudiante est = new Estudiante();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,23 +66,7 @@ public class PantallaAutenticacion extends AppCompatActivity {
             public void onClick(View v) { abrirPantallaRegistro(); }
         });
     }
-    /*
-    Esta autenticacion se debera realizar desde el controlador
-     */
-    public boolean autenticarUsuario(){
-        if(usuario.getText().toString().equals("hola@correo.com") &&
-                password.getText().toString().equals("12345")) {
-            Estudiante.setInstance(obtenerEstudiante("temp","temp"));
-            return true;
-        }
-        return false;
-    }
-    /*Este metodo deberia obtener TODA la informacion de el estudiante que inicio sesion
-      desde la BD y crear una instancia de tipo Estudiante y retornarla.
-     */
-    public Estudiante obtenerEstudiante(String correo, String Password){
-        return new Estudiante("Daniel","hola@correo.com","12345","",0);
-    }
+
     public void abrirPantallaPrincipal(){
         Intent intent = new Intent(this, PantallaHorario.class);
         startActivity(intent);
@@ -93,11 +78,14 @@ public class PantallaAutenticacion extends AppCompatActivity {
 
     private void loginUser(){
         autenticacion.signInWithEmailAndPassword(email,contraseña).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
+           @Override
+           public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     abrirPantallaPrincipal();
-                    //finish();
+                    Estudiante.getInstance().setID(autenticacion.getCurrentUser().getUid());
+
+                    Toast.makeText(PantallaAutenticacion.this,
+                            Estudiante.getInstance().getID(), Toast.LENGTH_SHORT).show();
                 }
                 else {
                     Toast.makeText(PantallaAutenticacion.this,
@@ -112,9 +100,12 @@ public class PantallaAutenticacion extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         if(autenticacion.getCurrentUser() != null){
+
             abrirPantallaPrincipal();
             finish();
         }
     }
+
+
 
 }

@@ -1,22 +1,32 @@
 package EZCode.Pantallas;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
 import EZCode.Entidades.Estudiante;
 import EZCode.Entidades.Meta;
+import EZCode.Pantallas.PantallaAutenticacion;
 import EZCode.Metas.ControlMetas;
 
 public class PantallaMetas extends AppCompatActivity {
@@ -27,7 +37,11 @@ public class PantallaMetas extends AppCompatActivity {
     Button botonVolver;
     ArrayList<String> metas;
     ArrayAdapter arrayadapter;
-    
+    String meta;
+
+
+    private DatabaseReference database;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +49,8 @@ public class PantallaMetas extends AppCompatActivity {
 
         inicializarAtributos();
         iniciarLista();
+
+        database= FirebaseDatabase.getInstance().getReference();
 
         if(Estudiante.getInstance().getMetas().size() == 0)
             errores.setText("Parece que aun no tienes metas. Presiona el botón \"Agregar Meta\" para crear una meta nueva");
@@ -68,7 +84,7 @@ public class PantallaMetas extends AppCompatActivity {
     }
     private void iniciarLista(){
         for (Meta m:Estudiante.getInstance().getMetas()) {
-            metas.add(m.getNombre());
+            metas.add(meta);
         }
         listaMetas.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, metas));
     }
@@ -88,4 +104,24 @@ public class PantallaMetas extends AppCompatActivity {
         Intent intent = new Intent(this, PantallaHorario.class);
         startActivity(intent);
     }
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+    private void getUserInfo(){
+        database.child("ezcode-e852f-default-rtdb").child(Estudiante.getInstance().getID()).addValueEventListener(new ValueEventListener() {
+            @Override
+
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if(snapshot.exists()){
+                     meta= snapshot.child("Nombre").getValue().toString();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
+
+
+
 }

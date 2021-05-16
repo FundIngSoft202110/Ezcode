@@ -55,7 +55,7 @@ public class PantallaHorario extends AppCompatActivity {
             }
         });
 
-        calendario.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+       calendario.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 iniciarLista(year,month,dayOfMonth);

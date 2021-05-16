@@ -13,6 +13,7 @@ public class Estudiante implements Serializable {
     private ArrayList<Evento> horario;
     private static Estudiante instance;
 
+
     public ArrayList<Evento> getHorario() {
         return horario;
     }
@@ -35,7 +36,9 @@ public class Estudiante implements Serializable {
         this.horario = new ArrayList<>();
     }
 
-    public Estudiante(String nombre, String correo, String password, String ID, int EZpuntos) {
+
+    public Estudiante(String nombre, String correo, String password, int EZpuntos) {
+
         Nombre = nombre;
         Correo = correo;
         Password = password;
