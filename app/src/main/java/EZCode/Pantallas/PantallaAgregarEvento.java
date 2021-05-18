@@ -27,7 +27,7 @@ import java.util.List;
 import EZCode.Entidades.Actividad;
 import EZCode.Entidades.Clase;
 import EZCode.Entidades.Evento;
-import EZCode.Horario.ControlHorario;
+import EZCode.Controladores.ControlHorario;
 
 public class PantallaAgregarEvento extends AppCompatActivity {
 

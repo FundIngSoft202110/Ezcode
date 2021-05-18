@@ -1,4 +1,4 @@
-package EZCode.Horario;
+package EZCode.Controladores;
 
 import android.app.usage.UsageEvents;
 import android.util.Log;

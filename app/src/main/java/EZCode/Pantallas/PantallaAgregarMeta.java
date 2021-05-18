@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -16,7 +15,7 @@ import android.widget.TextView;
 import java.util.Calendar;
 
 import EZCode.Entidades.Meta;
-import EZCode.Metas.ControlMetas;
+import EZCode.Controladores.ControlMetas;
 
 public class PantallaAgregarMeta extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 

@@ -28,9 +28,7 @@ public class Estudiante implements Serializable {
         }
         return instance;
     }
-    public static synchronized void setInstance(Estudiante estudiante){
-        instance = estudiante;
-    }
+
     public Estudiante() {
         this.Metas = new ArrayList<>();
         this.horario = new ArrayList<>();

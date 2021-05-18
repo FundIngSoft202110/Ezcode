@@ -14,11 +14,9 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import java.util.Calendar;
-
 import EZCode.Entidades.Estudiante;
 import EZCode.Entidades.Meta;
-import EZCode.Metas.ControlMetas;
+import EZCode.Controladores.ControlMetas;
 
 public class PantallaModificarMeta extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
