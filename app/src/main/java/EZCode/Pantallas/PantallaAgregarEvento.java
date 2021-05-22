@@ -2,8 +2,10 @@ package EZCode.Pantallas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -44,6 +46,7 @@ public class PantallaAgregarEvento extends AppCompatActivity {
     Button repeticionEvento;
     Button botonAgregarEvento;
     ControlHorario controlHorario;
+    private int notificationId = 1;
     List<String> repeticiones = new ArrayList<>();
     int cantRepeticiones = 0;
 
@@ -76,6 +79,9 @@ public class PantallaAgregarEvento extends AppCompatActivity {
                     controlHorario.agregarEvento(evento, repeticiones,cantRepeticiones);
                 }
                 else{
+
+
+
                     String desc = campoDescripcion.getText().toString();
                     Evento evento = new Actividad(fechaInicio,fechaFin,nombre,desc);
                     controlHorario.agregarEvento(evento, repeticiones, cantRepeticiones);
@@ -103,7 +109,11 @@ public class PantallaAgregarEvento extends AppCompatActivity {
         campoFechaInicial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 mostrarDialogoFechaInicio();
+
+
+
             }
         });
         campoFechaFin.setOnClickListener(new View.OnClickListener() {
@@ -116,6 +126,7 @@ public class PantallaAgregarEvento extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 mostrarDialogoRepeticion();
+
             }
         });
     }
@@ -168,6 +179,8 @@ public class PantallaAgregarEvento extends AppCompatActivity {
 
     private void mostrarDialogoFechaInicio(){
         fechaInicio = Calendar.getInstance();
+
+
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
@@ -175,11 +188,30 @@ public class PantallaAgregarEvento extends AppCompatActivity {
                 fechaInicio.set(Calendar.MONTH,month);
                 fechaInicio.set(Calendar.DAY_OF_MONTH,dayOfMonth);
 
+
                 TimePickerDialog.OnTimeSetListener timeSetListener = new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        Intent intent = new Intent(PantallaAgregarEvento.this, AlarmaRecordatorioEvento.class);
+                        intent.putExtra("notificationId", notificationId);
+                        intent.putExtra("message", campoNombre.getText().toString());
+
+                        //Pending Intent DS
+                        PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                                PantallaAgregarEvento.this, 0, intent, PendingIntent.FLAG_CANCEL_CURRENT
+                        );
+
+
                         fechaInicio.set(Calendar.HOUR_OF_DAY,hourOfDay);
                         fechaInicio.set(Calendar.MINUTE,minute);
+
+                        //Alarm Manager DS
+                        AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
+                        long alarmStarTime = fechaInicio.getTimeInMillis();
+
+                        //SetAlarm
+                        alarmManager.set(AlarmManager.RTC_WAKEUP,alarmStarTime,pendingIntent);
+
 
                         SimpleDateFormat dateFormat = new SimpleDateFormat("yy-MM-dd HH:mm");
                         campoFechaInicial.setText(dateFormat.format(fechaInicio.getTime()));
