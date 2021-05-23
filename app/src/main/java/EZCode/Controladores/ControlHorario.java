@@ -21,7 +21,6 @@ public class ControlHorario {
             Estudiante.getInstance().getHorario().add(evento);
         }
         else{
-            Log.d("Control", "Lista: " + Estudiante.getInstance().getHorario().toString());
             for (int i = 0; i < numRepeticiones; i++){
                 for (String dia : dias) {
                     Calendar inicio = Calendar.getInstance();
@@ -40,25 +39,26 @@ public class ControlHorario {
                     Log.d("Control", "Fin: " + df.format(fin.getTime()));
                     if(evento instanceof Clase){
                         Estudiante.getInstance().getHorario().add(new Clase(inicio,fin,evento.getNombre(),
-                                ((Clase)evento).getProfesor(),((Clase)evento).getSalon()));
+                                ((Clase)evento).getProfesor(),((Clase)evento).getSalon(),
+                                Estudiante.getInstance().getHorario().size()));
                     }
                     else{
-                        Estudiante.getInstance().getHorario().add(new Actividad(inicio,fin,evento.getNombre(),
-                                ((Actividad)evento).getDescripcion()));
+                        Estudiante.getInstance().getHorario().add(new Actividad(inicio,fin,
+                                evento.getNombre(),((Actividad)evento).getDescripcion(),
+                                Estudiante.getInstance().getHorario().size()));
                     }
                 }
-                Log.d("Control", "Lista: " + Estudiante.getInstance().getHorario().toString());
             }
         }
     }
-    public Boolean verificarFecha(Calendar inicio, Calendar fin){
-        /*
-        Solo faltaria verificar que no exista un evento que se cruce con esas fechas
-         */
-        if(!inicio.before(fin))
-            return true;
-        else
-            return false;
+    public String fechaValida(Calendar inicio, Calendar fin){
+        if(inicio.after(fin))
+            return "La fecha de inicio está despues de la fecha de fin";
+        for (Evento evento: Estudiante.getInstance().getHorario()) {
+            if(hayInterseccionEventos(evento,inicio,fin))
+                return "Ya tiene un evento programado a esa hora";
+        }
+        return "";
     }
     public void eliminarEvento(Evento evento){
         Estudiante.getInstance().getHorario().remove(evento.getID());
@@ -67,6 +67,25 @@ public class ControlHorario {
         Estudiante.getInstance().getHorario().remove(evento.getID());
         Estudiante.getInstance().getHorario().add(evento.getID(),evento);
     }
+    public Boolean hayInterseccionEventos(Evento evento, Calendar inicio, Calendar fin){
+        evento.getHoraInicial().clear(Calendar.MILLISECOND);
+        evento.getHoraFinal().clear(Calendar.MILLISECOND);
+        inicio.clear(Calendar.MILLISECOND);
+        fin.clear(Calendar.MILLISECOND);
+        if (inicio.equals(evento.getHoraInicial()) && fin.equals(evento.getHoraFinal())) {
+            return true;
+        }
+        if (inicio.before(evento.getHoraInicial()) && fin.after(evento.getHoraFinal())) {
+            return true;
+        }
+        Boolean inicial = inicio.before(evento.getHoraInicial()) || inicio.after(evento.getHoraFinal());
+        Boolean ffinal = fin.before(evento.getHoraInicial()) || fin.after(evento.getHoraFinal());
+        if( inicial && ffinal) {
+            return false;
+        }
+        return true;
+    }
+
     private int convertirDia(String dia){
         if(dia == "domingo")
             return Calendar.SUNDAY;

@@ -13,12 +13,9 @@ public class Actividad extends Evento{
         super(horaInicial, horaFinal, nombre);
         this.descripcion = descripcion;
     }
-
-    @Override
-    public List<String> getSubAtributos() {
-        List<String> retorno = new ArrayList<>();
-        retorno.add(descripcion);
-        return retorno;
+    public Actividad(Calendar horaInicial, Calendar horaFinal, String nombre, String descripcion, int ID) {
+        super(horaInicial, horaFinal, nombre, ID);
+        this.descripcion = descripcion;
     }
 
     @Override

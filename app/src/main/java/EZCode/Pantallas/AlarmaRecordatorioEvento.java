@@ -10,21 +10,16 @@ import android.os.Build;
 
 import androidx.core.app.NotificationCompat;
 
-import EZCode.Pantallas.PantallaAgregarEvento;
-
 public class AlarmaRecordatorioEvento extends BroadcastReceiver {
 
     private static final String CHANNEL_ID = "CHANNEL_SAMPLE";
 
     @Override
     public void onReceive(Context context, Intent intent) {
-
-        
         int notificationId = intent.getIntExtra("notificationId", 0);
         String message = intent.getStringExtra("message");
 
-        
-        Intent mainIntent = new Intent(context, PantallaAgregarEvento.class);
+        Intent mainIntent = new Intent(context, PantallaHorario.class);
         PendingIntent contentIntent = PendingIntent.getActivity(context, 0, mainIntent, 0);
 
         

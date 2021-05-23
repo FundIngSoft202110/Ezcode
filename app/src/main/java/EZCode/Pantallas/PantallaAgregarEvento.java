@@ -66,9 +66,9 @@ public class PantallaAgregarEvento extends AppCompatActivity {
                     return;
                 }
                 String nombre = campoNombre.getText().toString();
-                if(controlHorario.verificarFecha(fechaInicio,fechaFin)){
-                    Toast.makeText(getApplicationContext(),
-                            "Las fechas son incorrectas",Toast.LENGTH_SHORT).show();
+                String mensaje = controlHorario.fechaValida(fechaInicio,fechaFin);
+                if(!mensaje.equals("")){
+                    Toast.makeText(getApplicationContext(),mensaje,Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(esClase.isChecked()){

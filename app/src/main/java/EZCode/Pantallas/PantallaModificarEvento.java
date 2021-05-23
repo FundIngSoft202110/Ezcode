@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -101,15 +102,13 @@ public class PantallaModificarEvento extends AppCompatActivity {
             campoSalon.setVisibility(View.INVISIBLE);
             profesor.setVisibility(View.INVISIBLE);
             salon.setVisibility(View.INVISIBLE);
-            List<String> lista = evento.getSubAtributos();
-            campoDescripcion.setText(lista.get(0));
+            campoDescripcion.setText(((Actividad)evento).getDescripcion());
         }
         else{
             campoDescripcion.setVisibility(View.INVISIBLE);
             descripcion.setVisibility(View.INVISIBLE);
-            List<String> lista = evento.getSubAtributos();
-            campoProfesor.setText(lista.get(0));
-            campoSalon.setText(lista.get(1));
+            campoProfesor.setText(((Clase)evento).getProfesor());
+            campoSalon.setText(((Clase)evento).getSalon());
         }
     }
     private void mostrarDialogoFechaInicio(){

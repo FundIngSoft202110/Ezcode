@@ -30,18 +30,12 @@ public class PantallaAutenticacion extends AppCompatActivity {
     String email ="";
     String contraseña ="";
     FirebaseAuth autenticacion;
-    Estudiante est = new Estudiante();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pantalla_autenticacion);
 
-        botonInicio = (Button) findViewById(R.id.botonInicioSesion);
-        botonRegistro = (Button) findViewById(R.id.botonRegistro);
-        usuario =  (EditText) findViewById(R.id.campoCorreo);
-        password = (EditText) findViewById(R.id.campoPassword);
-        error = (TextView) findViewById(R.id.Errores);
-        autenticacion=FirebaseAuth.getInstance();
+        iniciarAtributos();
 
         botonInicio.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -49,7 +43,7 @@ public class PantallaAutenticacion extends AppCompatActivity {
                 email=usuario.getText().toString();
                 contraseña=password.getText().toString();
 
-                if(!email.isEmpty() && !contraseña.isEmpty()){
+                if(!email.equals("") && !contraseña.equals("")){
                     loginUser();
                 }
                 else {
@@ -79,7 +73,6 @@ public class PantallaAutenticacion extends AppCompatActivity {
                 if(task.isSuccessful()){
                     abrirPantallaPrincipal();
                     Estudiante.getInstance().setID(autenticacion.getCurrentUser().getUid());
-
                     Toast.makeText(PantallaAutenticacion.this,
                             Estudiante.getInstance().getID(), Toast.LENGTH_SHORT).show();
                 }
@@ -92,16 +85,20 @@ public class PantallaAutenticacion extends AppCompatActivity {
         );
     }
 
+    private void iniciarAtributos(){
+        botonInicio = (Button) findViewById(R.id.botonInicioSesion);
+        botonRegistro = (Button) findViewById(R.id.botonRegistro);
+        usuario =  (EditText) findViewById(R.id.campoCorreo);
+        password = (EditText) findViewById(R.id.campoPassword);
+        error = (TextView) findViewById(R.id.Errores);
+        autenticacion=FirebaseAuth.getInstance();
+    }
     @Override
     protected void onStart() {
         super.onStart();
         if(autenticacion.getCurrentUser() != null){
-
             abrirPantallaPrincipal();
             finish();
         }
     }
-
-
-
 }
