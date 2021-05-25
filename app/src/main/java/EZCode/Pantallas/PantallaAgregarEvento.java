@@ -9,6 +9,7 @@ import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -79,12 +80,9 @@ public class PantallaAgregarEvento extends AppCompatActivity {
                     controlHorario.agregarEvento(evento, repeticiones,cantRepeticiones);
                 }
                 else{
-
-
-
                     String desc = campoDescripcion.getText().toString();
                     Evento evento = new Actividad(fechaInicio,fechaFin,nombre,desc);
-                    controlHorario.agregarEvento(evento, repeticiones, cantRepeticiones);
+                    controlHorario.agregarEvento(evento, repeticiones,cantRepeticiones);
                 }
                 volverPantallaHorario();
             }
@@ -109,11 +107,7 @@ public class PantallaAgregarEvento extends AppCompatActivity {
         campoFechaInicial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 mostrarDialogoFechaInicio();
-
-
-
             }
         });
         campoFechaFin.setOnClickListener(new View.OnClickListener() {
@@ -179,8 +173,6 @@ public class PantallaAgregarEvento extends AppCompatActivity {
 
     private void mostrarDialogoFechaInicio(){
         fechaInicio = Calendar.getInstance();
-
-
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
