@@ -10,7 +10,7 @@
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:text="Tu horario"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -37,19 +37,20 @@
 
     <Button
         android:id="@+id/botonNuevoEvento"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
         android:layout_marginTop="20dp"
-        android:text="Agregar evento"
+        android:text="Nuevo evento"
         app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="20dp"
         app:layout_constraintHorizontal_bias="0.627"
         app:layout_constraintStart_toEndOf="@+id/botonMetas"
         app:layout_constraintTop_toBottomOf="@+id/listaEventos" />
 
     <Button
         android:id="@+id/botonCerrarSesion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
         android:text="Cerrar sesión"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -68,11 +69,11 @@
 
     <Button
         android:id="@+id/botonMetas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
+        android:layout_width="180dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
-        android:text="Ver mis metas"
+        android:text="Ver metas"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/listaEventos" />
 

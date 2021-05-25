@@ -21,7 +21,6 @@ import java.util.List;
 
 import EZCode.Entidades.Estudiante;
 import EZCode.Entidades.Evento;
-import EZCode.Controladores.ControlHorario;
 
 public class PantallaHorario extends AppCompatActivity {
 
@@ -75,9 +74,8 @@ public class PantallaHorario extends AppCompatActivity {
         });
         botonMetas.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                abrirPantallaMetas();
-            }
+
+            public void onClick(View v) { abrirPantallaMetas(); }
         });
 
     }

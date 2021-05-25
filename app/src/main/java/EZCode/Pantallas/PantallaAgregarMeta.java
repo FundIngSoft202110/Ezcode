@@ -11,11 +11,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 import EZCode.Entidades.Meta;
 import EZCode.Controladores.ControlMetas;
+
 
 public class PantallaAgregarMeta extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
@@ -25,6 +30,8 @@ public class PantallaAgregarMeta extends AppCompatActivity implements AdapterVie
     Button botonAgregarMeta;
     Button botonCancelar;
     TextView errores;
+    String Id = PantallaAutenticacion.autenticacion.getCurrentUser().getUid();
+
     private ControlMetas controlMetas;
 
     @Override
@@ -46,9 +53,17 @@ public class PantallaAgregarMeta extends AppCompatActivity implements AdapterVie
                 int prioridad = Integer.parseInt(spinnerPrioridad.getSelectedItem().toString());
                 nombre = campoNombre.getText().toString();
                 descripcion = campoDescripcion.getText().toString();
-                Meta meta = new Meta(nombre, descripcion, prioridad, 0, Calendar.getInstance().getTime());
-                controlMetas.agregarMeta(meta);
+
+                DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+                Date date = new Date();
+                String strDate = dateFormat.format(date).toString();
+
+                Meta meta = new Meta(nombre, descripcion, prioridad,0,strDate);
+
+                PantallaAutenticacion.data.child("Estudiantes").child(Id).child("Metas").child(nombre).setValue(meta);
+                Toast.makeText(PantallaAgregarMeta.this, "Se agregó una meta", Toast.LENGTH_SHORT).show();
                 volverPantallaMetas();
+
             }
         });
         botonCancelar.setOnClickListener(new View.OnClickListener() {

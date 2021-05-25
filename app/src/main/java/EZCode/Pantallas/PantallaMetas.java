@@ -2,110 +2,90 @@ package EZCode.Pantallas;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-import EZCode.Entidades.Estudiante;
 import EZCode.Entidades.Meta;
 
 public class PantallaMetas extends AppCompatActivity {
 
-    Button botonNuevarMeta;
-    ListView listaMetas;
-    TextView errores;
-    Button botonVolver;
-    ArrayList<String> metas;
-    ArrayAdapter arrayadapter;
-    String meta;
-
-
-    private DatabaseReference database;
+    private Button newMeta;
+    private Button volver;
+    private ListaAdapter Madapter;
+    private RecyclerView Mrecycler;
+    private ArrayList<Meta> Metas = new ArrayList<Meta>();
+    String id="";
+   
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_metas);
 
-        inicializarAtributos();
-        iniciarLista();
+        newMeta= (Button) findViewById(R.id.botonnuevameta);
+        volver = (Button) findViewById(R.id.botonvolver);
+        Mrecycler=(RecyclerView) findViewById(R.id.listmetas);
 
-        database= FirebaseDatabase.getInstance().getReference();
+        Mrecycler.setLayoutManager(new LinearLayoutManager(this));
 
-        if(Estudiante.getInstance().getMetas().size() == 0)
-            errores.setText("Parece que aun no tienes metas. Presiona el botón \"Agregar Meta\" para crear una meta nueva");
-        else {
-
-            errores.setText("Presione una meta para modificarla o borrarla");
-        }
-
-        listaMetas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> arrayadapter, View view, int position, long id) {
-                Intent intent = new Intent(getApplicationContext(), PantallaModificarMeta.class);
-                intent.putExtra("Meta", Estudiante.getInstance().getMetas().get(position));
-                intent.putExtra("indice",position);
-                startActivity(intent);
-            }
-        });
-        botonNuevarMeta.setOnClickListener(new View.OnClickListener() {
+        newMeta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 abrirPantallaAgregarMeta();
             }
         });
-        botonVolver.setOnClickListener(new View.OnClickListener() {
+
+        volver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 volverPantallaPrincipal();
             }
         });
+        //Metas.clear();
+        getnombre();
 
     }
-    private void iniciarLista(){
-        for (Meta m:Estudiante.getInstance().getMetas()) {
-            metas.add(meta);
-        }
-        listaMetas.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, metas));
-    }
-    private void inicializarAtributos(){
-        botonNuevarMeta = (Button) findViewById(R.id.botonNuevaMeta);
-        listaMetas = (ListView) findViewById(R.id.listaMetas);
-        errores = (TextView) findViewById(R.id.textoNoMetas);
-        botonVolver = (Button) findViewById(R.id.botonVolverPantallaPrincipal);
-        metas = new ArrayList<>();
-    }
-
     private void abrirPantallaAgregarMeta(){
         Intent intent = new Intent(this, PantallaAgregarMeta.class);
         startActivity(intent);
     }
+
     private void volverPantallaPrincipal(){
         Intent intent = new Intent(this, PantallaHorario.class);
         startActivity(intent);
     }
-//////////////////////////////////////////////////////////////////////////////////////////////////////
-    private void getUserInfo(){
-        database.child("ezcode-e852f-default-rtdb").child(Estudiante.getInstance().getID()).addValueEventListener(new ValueEventListener() {
-            @Override
 
+    private void getnombre (){
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        id=auth.getCurrentUser().getUid();
+
+        PantallaAutenticacion.data.child("Estudiantes").child(auth.getCurrentUser().getUid()).child("Metas").addValueEventListener(new ValueEventListener() {
+            @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if(snapshot.exists()){
-                     meta= snapshot.child("Nombre").getValue().toString();
+
+                    Metas.clear();
+                   for (DataSnapshot ds: snapshot.getChildren()) {
+                        String nombre= ds.child("nombre").getValue().toString();
+                        Metas.add(new Meta(nombre));
+
+
+                   }
+                    Madapter = new ListaAdapter(Metas,R.layout.vista_metas);
+                    Mrecycler.setAdapter(Madapter);
                 }
             }
 
@@ -115,7 +95,4 @@ public class PantallaMetas extends AppCompatActivity {
             }
         });
     }
-
-
-
 }

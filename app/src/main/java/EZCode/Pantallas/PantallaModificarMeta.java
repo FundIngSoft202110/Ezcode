@@ -1,7 +1,5 @@
 package EZCode.Pantallas;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,9 +12,13 @@ import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.ArrayList;
+
+import EZCode.Controladores.ControlMetas;
 import EZCode.Entidades.Estudiante;
 import EZCode.Entidades.Meta;
-import EZCode.Controladores.ControlMetas;
 
 public class PantallaModificarMeta extends AppCompatActivity implements AdapterView.OnItemSelectedListener{
 
@@ -30,6 +32,8 @@ public class PantallaModificarMeta extends AppCompatActivity implements AdapterV
     Button botonConfirmarCambios;
     Button botonEliminarMeta;
     ProgressBar barraProgreso;
+    ArrayList<Meta> meta = new ArrayList<>();
+    Meta carrgar = (Meta) getIntent().getExtras().getSerializable("item");;
     private ControlMetas controlMetas;
 
     @Override
@@ -37,8 +41,8 @@ public class PantallaModificarMeta extends AppCompatActivity implements AdapterV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_modificar_meta);
 
-        iniciarAtributos();
-        iniciarSpinner();
+        //iniciarAtributos();
+       // iniciarSpinner();
 
         botonConfirmarCambios.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,7 +73,7 @@ public class PantallaModificarMeta extends AppCompatActivity implements AdapterV
 
     }
     private void volverPantallaMetas(){
-        Intent intent = new Intent(this,PantallaMetas.class);
+        Intent intent = new Intent(this, PantallaMetas.class);
         startActivity(intent);
     }
     private void iniciarSpinner(){

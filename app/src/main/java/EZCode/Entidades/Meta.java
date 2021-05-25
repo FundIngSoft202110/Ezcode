@@ -10,15 +10,25 @@ public class Meta implements Serializable {
     private String descripcion;
     private int prioridad;
     private int progreso;
-    private Date fechaInicio;
+    private String fechaInicio;
 
-    public Meta(String nombre, String descripcion, int prioridad, int progreso, Date fechaInicio) {
+    public Meta(String nombre, String descripcion, int prioridad, int progreso, String fechaInicio) {
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.prioridad = prioridad;
         this.progreso = progreso;
         this.fechaInicio = fechaInicio;
     }
+    public Meta(String nombre, String descripcion, int prioridad) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.prioridad = prioridad;
+    }
+    public Meta(String nombre) {
+        this.nombre = nombre;
+
+    }
+
 
     @Override
     public boolean equals(Object o) {
@@ -83,11 +93,11 @@ public class Meta implements Serializable {
         this.progreso = progreso;
     }
 
-    public Date getFechaInicio() {
+    public String getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(Date fechaInicio) {
+    public void setFechaInicio(String fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 }

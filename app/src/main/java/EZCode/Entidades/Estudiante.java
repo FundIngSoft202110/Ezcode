@@ -11,7 +11,7 @@ public class Estudiante implements Serializable {
     private int EZpuntos;
     private ArrayList<Meta> Metas;
     private ArrayList<Evento> horario;
-    private static Estudiante instance;
+    public static Estudiante instance;
 
 
     public ArrayList<Evento> getHorario() {
