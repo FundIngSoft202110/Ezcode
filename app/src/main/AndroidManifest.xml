@@ -9,12 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EZCode">
-        <activity android:name=".PantallaModificarEvento"></activity>
+        <activity android:name=".PantallaMoficarMeta"></activity>
+        <activity android:name=".PantallaMetas" />
+        <activity android:name=".PantallaModificarEvento" />
         <activity android:name=".PantallaAgregarEvento" />
-        <activity android:name=".PantallaModificarMeta" />
         <activity android:name=".PantallaAgregarMeta" />
         <activity android:name=".PantallaRegistro" />
-        <activity android:name=".PantallaMetas" />
         <activity android:name=".PantallaHorario" />
         <activity android:name=".PantallaAutenticacion">
             <intent-filter>

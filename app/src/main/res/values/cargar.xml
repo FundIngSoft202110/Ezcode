@@ -1,6 +1,7 @@
 <resources>
-    <string name="app_name">EZCode</string>
-    <string-array name="prioridades">
+    <string name="name">EZCode</string>
+    <string-array name="prueba">
+        <item>0</item>
         <item>1</item>
         <item>2</item>
         <item>3</item>
@@ -8,5 +9,3 @@
         <item>5</item>
     </string-array>
 </resources>
-
-
