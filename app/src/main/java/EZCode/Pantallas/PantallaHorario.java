@@ -124,7 +124,7 @@ public class PantallaHorario extends AppCompatActivity {
                 }
                 try {
                     Log.d("Eventos DB",eventosDB.toString());
-                    Estudiante.getInstance().setHorario(controlHorario.convertirDTOEvento(eventosDB));
+                    Estudiante.getInstance().setHorario(controlHorario.convertirAEvento(eventosDB));
                     Calendar calendar = Calendar.getInstance();
                     iniciarLista(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),
                             calendar.get(Calendar.DAY_OF_MONTH));

@@ -93,7 +93,21 @@ public class ControlHorario {
         return "";
     }
     public void eliminarEvento(Evento evento){
-        Estudiante.getInstance().getHorario().remove(evento.getID());
+        int id = evento.getID();
+        Log.d("Eliminando Evento","lista antes de borrar: "+Estudiante.getInstance().getHorario().toString());
+        Estudiante.getInstance().getHorario().remove(id);
+
+        data.child("Eventos").child(usuario.getUid()).child(String.valueOf(id)).removeValue();
+        for (Evento e : Estudiante.getInstance().getHorario()) {
+            int tempID = e.getID();
+            if(tempID > id){
+                e.setID(tempID-1);
+                DTOEvento dto = convertirADTOEvento(e);
+                data.child("Eventos").child(usuario.getUid()).child(String.valueOf(id)).setValue(dto);
+            }
+        }
+        Log.d("Eliminando Evento","lista despues de borrar: "+Estudiante.getInstance().getHorario().toString());
+        data.child("Eventos").child(usuario.getUid()).child(String.valueOf(Estudiante.getInstance().getHorario().size())).removeValue();
     }
     public void modificarEvento(Evento evento){
         SimpleDateFormat df = new SimpleDateFormat("yy-MM-dd HH:mm");
@@ -136,7 +150,22 @@ public class ControlHorario {
         }
         return true;
     }
-    public List<Evento> convertirDTOEvento(List<DTOEvento> eventosDB) throws ParseException {
+    public DTOEvento convertirADTOEvento(Evento evento){
+        SimpleDateFormat df = new SimpleDateFormat("yy-MM-dd HH:mm");
+        DTOEvento dto = new DTOEvento(df.format(evento.getHoraInicial().getTime()),
+                df.format(evento.getHoraFinal().getTime()),evento.getNombre(),evento.getID());
+        if(evento instanceof Clase){
+            dto.setTipo("Clase");
+            dto.setProfesor(((Clase)evento).getProfesor());
+            dto.setSalon(((Clase)evento).getSalon());
+        }
+        else{
+            dto.setTipo("Actividad");
+            dto.setDescripcion(((Actividad)evento).getDescripcion());
+        }
+        return dto;
+    }
+    public List<Evento> convertirAEvento(List<DTOEvento> eventosDB) throws ParseException {
         SimpleDateFormat df = new SimpleDateFormat("yy-MM-dd HH:mm");
         List<Evento> eventos = new ArrayList<>();
         for (DTOEvento ev : eventosDB) {
