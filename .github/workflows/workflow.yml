@@ -1,6 +1,5 @@
 # This workflow will build a Java project with Gradle
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-gradle
-
 name: Java CI with Gradle
 
 on:
@@ -29,7 +28,8 @@ jobs:
       uses: moatazeldebsy/Appium-Server-GitHub-Action@V1.0.5
     - name: Install and Run Appium Server
       run: |
-        sudo chmod +x ./scripts/RunAppiumServer.sh # install and run appium server in the background
+        chmod +x ./scripts/RunAppiumServer.sh # install and run appium server in the background
+        sudo chown -R $USER /usr/local/lib/node_modules
         ./scripts/RunAppiumServer.sh
     - name: Run Appium Tests
       uses: reactivecircus/android-emulator-runner@v1 # install and create the Emulator
