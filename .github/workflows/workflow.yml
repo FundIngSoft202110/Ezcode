@@ -25,7 +25,9 @@ jobs:
     - name: Build with Gradle
       run: ./gradlew build
     - name: Install and Run Appium Server
-      uses: moatazeldebsy/appium-server-gitHub-action@V1.0.4
+      run: |
+        chmod +x ./scripts/RunAppiumServer.sh # install and run appium server in the background
+        ./scripts/RunAppiumServer.sh
     - name: Run Appium Tests
       uses: reactivecircus/android-emulator-runner@v1 # install and create the Emulator
       with:
