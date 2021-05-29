@@ -26,6 +26,7 @@ jobs:
       run: ./gradlew build
     - name: Install and Run Appium Server
       run: |
+        sudo chown -R $USER /usr/local/lib/node_modules
         chmod +x ./scripts/RunAppiumServer.sh # install and run appium server in the background
         ./scripts/RunAppiumServer.sh
     - name: Run Appium Tests
