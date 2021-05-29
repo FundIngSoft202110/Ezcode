@@ -4,76 +4,93 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_background260"
     tools:context=".PantallaHorario">
+
 
     <TextView
         android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Tu horario"
+        android:layout_width="394dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/calendario"
+        android:fontFamily="@font/ubuntu"
+        android:text="@string/mis_eventos"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        android:textColor="#27262E"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ListView
         android:id="@+id/listaEventos"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="400dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="160dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="375dp"
+        android:layout_height="277dp"
+        android:layout_marginTop="408dp"
+        android:cacheColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent">
+
 
     </ListView>
 
-    <Button
-        android:id="@+id/botonNuevoEvento"
+    <ImageButton
+        android:id="@+id/botonMemes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Agregar evento"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.627"
-        app:layout_constraintStart_toEndOf="@+id/botonMetas"
-        app:layout_constraintTop_toBottomOf="@+id/listaEventos" />
-
-    <Button
-        android:id="@+id/botonCerrarSesion"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cerrar sesión"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="44dp"
+        android:background="@drawable/cheer_up_shape"
+        android:backgroundTint="#009F8C"
+        android:src="@drawable/laugh_beam"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/botonNuevoEvento"
-        app:layout_constraintVertical_bias="0.386" />
-
-    <CalendarView
-        android:id="@+id/calendarView"
-        android:layout_width="333dp"
-        android:layout_height="309dp"
-        android:layout_marginTop="85dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/botonMetas"
+        tools:ignore="MissingConstraints" />
 
     <Button
         android:id="@+id/botonMetas"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
-        android:layout_marginTop="20dp"
-        android:text="Ver mis metas"
+        android:layout_width="132dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="44dp"
+        android:backgroundTint="@color/FondoBorroso"
+        android:text="Metas"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/botonCerrarSesion"
+        android:layout_width="132dp"
+        android:layout_height="62dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="44dp"
+        android:backgroundTint="@color/FondoBorroso"
+        android:text="@string/salir"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/botonMemes" />
+
+    <ImageButton
+        android:id="@+id/botonNuevoEvento"
+        android:layout_width="24dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="4dp"
+        android:src="@drawable/grupo_214"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <CalendarView
+        android:id="@+id/calendarView"
+        android:layout_width="393dp"
+        android:layout_height="305dp"
+        android:layout_marginTop="96dp"
+        android:background="@color/calendario"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/listaEventos" />
+        app:layout_constraintTop_toTopOf="@+id/textView7" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

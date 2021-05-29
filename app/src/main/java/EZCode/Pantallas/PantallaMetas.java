@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -25,7 +26,7 @@ import EZCode.Entidades.Meta;
 
 public class PantallaMetas extends AppCompatActivity {
 
-    Button botonNuevarMeta;
+    ImageButton botonNuevarMeta;
     ListView listaMetas;
     TextView errores;
     Button botonVolver;
@@ -83,7 +84,7 @@ public class PantallaMetas extends AppCompatActivity {
         listaMetas.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, metas));
     }
     private void inicializarAtributos(){
-        botonNuevarMeta = (Button) findViewById(R.id.botonNuevaMeta);
+        botonNuevarMeta = (ImageButton) findViewById(R.id.botonNuevaMeta);
         listaMetas = (ListView) findViewById(R.id.listaMetas);
         errores = (TextView) findViewById(R.id.textoNoMetas);
         botonVolver = (Button) findViewById(R.id.botonVolverPantallaPrincipal);

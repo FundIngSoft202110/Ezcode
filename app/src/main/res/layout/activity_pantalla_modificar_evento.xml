@@ -1,31 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_background260"
     tools:context=".PantallaModificarEvento">
+
+  <TextView
+      android:id="@+id/textView2"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="24dp"
+      android:layout_marginTop="228dp"
+      android:fontFamily="@font/ubuntu"
+      android:text="@string/profesor"
+      android:textColor="@color/white"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/campoModificarFechaInicio" />
+
+  <TextView
+      android:id="@+id/textView4"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="24dp"
+      android:layout_marginTop="324dp"
+      android:fontFamily="@font/ubuntu"
+      android:text="@string/salon"
+      android:textColor="@color/white"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/campoModificarFechaInicio" />
+
+  <TextView
+      android:id="@+id/textView"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_marginStart="24dp"
+      android:layout_marginTop="124dp"
+      android:fontFamily="@font/ubuntu"
+      android:text="@string/descripci_n"
+      android:textColor="@color/white"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/campoModificarFechaInicio" />
 
   <TextView
       android:id="@+id/textView9"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginTop="16dp"
+      android:layout_marginTop="36dp"
+      android:fontFamily="@font/ubuntu_medium"
       android:text="Modificar Evento"
       android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+      android:textColor="@color/white"
       app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintHorizontal_bias="0.211"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toTopOf="parent" />
 
   <EditText
       android:id="@+id/campoModificarNombreEvento"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="100dp"
-      android:layout_marginTop="12dp"
+      android:layout_width="286dp"
+      android:layout_height="39dp"
+      android:layout_marginStart="24dp"
+      android:layout_marginTop="8dp"
+      android:background="@drawable/textfieldstyle"
+      android:backgroundTint="@color/FondoBorroso"
       android:ems="10"
-      android:hint="Nombre"
       android:inputType="textPersonName"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/textView11" />
@@ -34,9 +74,11 @@
       android:id="@+id/textView11"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginStart="100dp"
-      android:layout_marginTop="16dp"
-      android:text="Nombre"
+      android:layout_marginStart="24dp"
+      android:layout_marginTop="12dp"
+      android:fontFamily="@font/ubuntu"
+      android:text="@string/nombre"
+      android:textColor="@color/white"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
@@ -44,22 +86,25 @@
       android:id="@+id/textView12"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginStart="100dp"
-      android:layout_marginTop="20dp"
+      android:layout_marginStart="24dp"
+      android:layout_marginTop="24dp"
+      android:fontFamily="@font/ubuntu"
       android:text="Fecha y hora de inicio"
+      android:textColor="@color/white"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/campoModificarNombreEvento" />
 
   <EditText
       android:id="@+id/campoModificarFechaInicio"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="16dp"
+      android:layout_width="286dp"
+      android:layout_height="39dp"
+      android:layout_marginTop="8dp"
+      android:background="@drawable/textfieldstyle"
+      android:backgroundTint="@color/FondoBorroso"
       android:ems="10"
-      android:hint="Fecha / hora de inicio"
       android:inputType="textPersonName"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintHorizontal_bias="0.497"
+      app:layout_constraintHorizontal_bias="0.242"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
@@ -67,94 +112,74 @@
       android:id="@+id/textView13"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginStart="100dp"
-      android:layout_marginTop="20dp"
+      android:layout_marginStart="24dp"
+      android:layout_marginTop="32dp"
+      android:fontFamily="@font/ubuntu"
       android:text="Fecha y hora de fin"
+      android:textColor="@color/white"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/campoModificarFechaInicio" />
 
   <EditText
       android:id="@+id/campoModificarFechaFin"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="100dp"
-      android:layout_marginTop="16dp"
+      android:layout_width="286dp"
+      android:layout_height="39dp"
+      android:layout_marginStart="24dp"
+      android:layout_marginTop="8dp"
+      android:background="@drawable/textfieldstyle"
+      android:backgroundTint="@color/FondoBorroso"
       android:ems="10"
-      android:hint="Fecha / hora fin"
       android:inputType="textPersonName"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
   <EditText
       android:id="@+id/campoModificarProfesorEvento"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="100dp"
-      android:layout_marginTop="16dp"
+      android:layout_width="286dp"
+      android:layout_height="39dp"
+      android:layout_marginStart="24dp"
+      android:layout_marginTop="96dp"
+      android:background="@drawable/textfieldstyle"
+      android:backgroundTint="@color/FondoBorroso"
       android:ems="10"
-      android:hint="Profesor"
       android:inputType="textPersonName"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/textView14" />
-
-  <TextView
-      android:id="@+id/textView14"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="100dp"
-      android:layout_marginTop="16dp"
-      android:text="Profesor"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/campoModificarFechaFin" />
-
-  <EditText
-      android:id="@+id/campoModificarDescripcionEvento"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="100dp"
-      android:layout_marginTop="32dp"
-      android:ems="10"
-      android:hint="Descripción"
-      android:inputType="textPersonName"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/textView15" />
-
-  <TextView
-      android:id="@+id/textView15"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="112dp"
-      android:text="Descripción"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/campoModificarFechaFin" />
-
-  <TextView
-      android:id="@+id/textView16"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="100dp"
-      android:layout_marginTop="12dp"
-      android:text="Salón"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/campoModificarDescripcionEvento" />
+      app:layout_constraintTop_toTopOf="@+id/campoModificarDescripcionEvento" />
 
   <EditText
       android:id="@+id/campoMOdificarSalonEvento"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginStart="100dp"
-      android:layout_marginTop="12dp"
+      android:layout_width="286dp"
+      android:layout_height="39dp"
+      android:layout_marginStart="24dp"
+      android:layout_marginTop="96dp"
+      android:background="@drawable/textfieldstyle"
+      android:backgroundTint="@color/FondoBorroso"
       android:ems="10"
-      android:hint="Salón"
       android:inputType="textPersonName"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/textView16" />
+      app:layout_constraintTop_toTopOf="@+id/campoModificarProfesorEvento" />
+
+  <EditText
+      android:id="@+id/campoModificarDescripcionEvento"
+      android:layout_width="286dp"
+      android:layout_height="39dp"
+      android:layout_marginStart="24dp"
+      android:layout_marginTop="56dp"
+      android:background="@drawable/textfieldstyle"
+      android:backgroundTint="@color/FondoBorroso"
+      android:ems="10"
+      android:inputType="textPersonName"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toBottomOf="@+id/campoModificarFechaFin" />
 
   <Button
       android:id="@+id/botonModificarEvento"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginTop="36dp"
+      android:layout_marginTop="24dp"
+      android:backgroundTint="@color/Botones"
+      android:textColor="@color/black"
+      android:fontFamily="@font/roboto_medium"
       android:text="Confirmar cambios"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintHorizontal_bias="0.497"
@@ -165,8 +190,10 @@
       android:id="@+id/botonEliminarEvento"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_marginTop="20dp"
+      android:layout_marginTop="24dp"
       android:text="Eliminar evento"
+      style="@style/Widget.AppCompat.Button.Borderless"
+      android:fontFamily="@font/roboto_medium"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintTop_toBottomOf="@+id/botonModificarEvento" />

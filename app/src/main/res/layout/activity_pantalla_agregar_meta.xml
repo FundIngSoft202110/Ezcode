@@ -1,49 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_background260"
     tools:context=".PantallaAgregarMeta">
+    <ImageView
+        android:id="@+id/imageView"
+        style="@style/CardView.Light"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/rayos_fondo"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="0dp" />
+    <TextView
+        android:id="@+id/labelNombreMeta"
+        android:layout_width="132dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="184dp"
+        android:fontFamily="@font/ubuntu"
+        android:text="@string/nombre"
+        android:textColor="@color/white"
+        android:textSize="14dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/labeldescrip"
+        android:layout_width="132dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="40dp"
+        android:fontFamily="@font/ubuntu"
+        android:text="@string/descripci_n"
+        android:textColor="@color/white"
+        android:textSize="14dp"
+        app:layout_constraintBottom_toTopOf="@+id/campoDescripcionMeta"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/campoNombreMeta"
+        app:layout_constraintVertical_bias="0.79" />
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="Nueva Meta"
+        android:layout_marginTop="64dp"
+        android:fontFamily="@font/ubuntu_medium"
+        android:text="@string/nueva_meta"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.242"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/campoDescripcionMeta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="Descripción"
-        android:inputType="textMultiLine"
+        android:layout_width="286dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="316dp"
+        android:background="@drawable/textfieldstyle"
+        android:backgroundTint="@color/FondoBorroso"
+        android:fontFamily="@font/ubuntu_medium"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.383"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/campoNombreMeta" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/campoNombreMeta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:ems="10"
-        android:hint="Nombre"
-        android:inputType="textPersonName"
+        android:layout_width="286dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="216dp"
+        android:background="@drawable/textfieldstyle"
+        android:backgroundTint="@color/FondoBorroso"
+        android:fontFamily="@font/ubuntu_medium"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.383"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textoErrorMeta" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textoErrorMeta"
@@ -59,44 +96,54 @@
         android:id="@+id/botonAgregarMeta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
-        android:text="Agregar Meta"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinnerPrioridad" />
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="304dp"
+        android:backgroundTint="@color/Botones"
+        android:fontFamily="@font/roboto_medium"
+
+
+        android:text="@string/agregar_meta"
+        android:textColor="@android:color/background_dark"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/botonCancelarMetaNueva"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="68dp"
-        android:text="Cancelar"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="@color/material_on_background_disabled"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/cancelar"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/botonAgregarMeta" />
 
     <Spinner
         android:id="@+id/spinnerPrioridad"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="100dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_width="249dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="384dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/campoDescripcionMeta" />
+        app:layout_constraintTop_toBottomOf="@+id/campoDescripcionMeta"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textView17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:text="Prioridad (1=alta, 5=baja)"
+        android:layout_marginStart="48dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="@font/ubuntu"
+        android:text="@string/prioridad_1_alta_5_baja"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/spinnerPrioridad"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/campoDescripcionMeta"
-        app:layout_constraintVertical_bias="0.517" />
+        app:layout_constraintVertical_bias="0.741" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

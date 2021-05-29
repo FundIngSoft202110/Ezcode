@@ -173,9 +173,9 @@ public class PantallaModificarEvento extends AppCompatActivity {
     private void iniciarAtributos(){
         botonModificarEvento = (Button) findViewById(R.id.botonModificarEvento);
         botonEliminarEvento = (Button) findViewById(R.id.botonEliminarEvento);
-        profesor = (TextView) findViewById(R.id.textView14);
-        descripcion = (TextView) findViewById(R.id.textView15);
-        salon = (TextView) findViewById(R.id.textView16);
+        profesor = (TextView) findViewById(R.id.textView21);
+        descripcion = (TextView) findViewById(R.id.textView17);
+        salon = (TextView) findViewById(R.id.textView18);
         campoNombre = (EditText) findViewById(R.id.campoModificarNombreEvento);
         campoFechaInicio = (EditText) findViewById(R.id.campoModificarFechaInicio);
         campoFechaFin = (EditText) findViewById(R.id.campoModificarFechaFin);

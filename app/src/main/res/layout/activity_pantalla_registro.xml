@@ -4,69 +4,133 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PantallaRegistro">
+    tools:context=".PantallaRegistro"
+    android:background="@drawable/gradient_background260">
 
-    <TextView
-        android:id="@+id/textView4"
+    <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="96dp"
-        android:text="Crear Cuenta"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_marginStart="40dp"
+
+        android:layout_marginTop="92dp"
+        android:src="@drawable/componente_20__2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        style="@style/CardView.Light"
+        android:layout_width="394dp"
+        android:layout_height="807dp"
+        android:src="@drawable/rayos_fondo_invertido"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/registrate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="152dp"
+        android:fontFamily="@font/ubuntu_medium"
+        android:text="@string/registro"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.181"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/labelNombre"
+        android:layout_width="132dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="12dp"
+        android:fontFamily="@font/ubuntu"
+        android:text="@string/nombre"
+        android:textColor="@color/white"
+        android:textSize="14dp"
+        app:layout_constraintBottom_toTopOf="@+id/NombreRegistro"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/NombreRegistro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="116dp"
-        android:layout_marginTop="196dp"
-        android:layout_marginEnd="116dp"
-        android:ems="10"
-        android:hint="Nombre"
-        android:inputType="textEmailAddress"
+        android:layout_width="286dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="248dp"
+        android:background="@drawable/textfieldstyle"
+        android:backgroundTint="@color/FondoBorroso"
+        android:fontFamily="@font/ubuntu_medium"
+        android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.373"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/labelCorreo"
+        android:layout_width="132dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="12dp"
+        android:fontFamily="@font/ubuntu"
+        android:text="@string/correo"
+        android:textColor="@color/white"
+        android:textSize="14dp"
+        app:layout_constraintBottom_toTopOf="@+id/CorreoRegistro"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/CorreoRegistro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="264dp"
-        android:ems="10"
-        android:hint="Correo"
-        android:inputType="textEmailAddress"
+        android:layout_width="286dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="344dp"
+        android:background="@drawable/textfieldstyle"
+        android:backgroundTint="@color/FondoBorroso"
+        android:fontFamily="@font/ubuntu_medium"
+        android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.383"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/labelClave"
+        android:layout_width="90dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/ubuntu"
+        android:text="@string/contrasenia"
+        android:textColor="@color/white"
+        android:textSize="14dp"
+        app:layout_constraintBottom_toTopOf="@+id/ContraseñaRegistro"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <EditText
         android:id="@+id/ContraseñaRegistro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="340dp"
-        android:ems="10"
-        android:hint="Contraseña"
+        android:layout_width="286dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="444dp"
+        android:background="@drawable/textfieldstyle"
+        android:backgroundTint="@color/FondoBorroso"
+        android:fontFamily="@font/ubuntu_medium"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.383"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/BttRegistrame"
-        android:layout_width="180dp"
+        android:layout_width="120dp"
         android:layout_height="50dp"
-        android:layout_marginTop="472dp"
-        android:text="Registrarme"
+        android:layout_marginTop="524dp"
+        android:backgroundTint="@color/Botones"
+        android:text="siguiente"
+        android:textColor="#000000"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.192"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

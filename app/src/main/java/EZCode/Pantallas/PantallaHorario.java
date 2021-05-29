@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.ImageButton;
 import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,11 +28,12 @@ public class PantallaHorario extends AppCompatActivity {
 
     CalendarView calendario;
     Button botonCerrarSesion;
-    Button botonAgregarEvento;
+    ImageButton botonAgregarEvento;
     Button botonMetas;
     ListView listaEventos;
     List<String> horario;
     List<Evento> eventosDia;
+    ImageButton boton_memes;
     private FirebaseAuth autenticar;
 
     @Override
@@ -52,6 +54,9 @@ public class PantallaHorario extends AppCompatActivity {
             }
         });
 
+
+
+
        calendario.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
@@ -59,14 +64,14 @@ public class PantallaHorario extends AppCompatActivity {
             }
         });
 
-        botonCerrarSesion.setOnClickListener(new View.OnClickListener() {
+       botonCerrarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 autenticar.signOut();
                 cerrarSesion();
                 finish();
             }
-        });
+       });
         botonAgregarEvento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,6 +82,12 @@ public class PantallaHorario extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 abrirPantallaMetas();
+            }
+        });
+        boton_memes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                abrirPantallaMemes();
             }
         });
 
@@ -118,13 +129,19 @@ public class PantallaHorario extends AppCompatActivity {
         Intent intent = new Intent(this, PantallaMetas.class);
         startActivity(intent);
     }
+    private void abrirPantallaMemes(){
+        Intent intent = new Intent(this, PantallaBoost.class);
+        startActivity(intent);
+    }
     private void iniciarlizarAtributos(){
         calendario =  (CalendarView) findViewById(R.id.calendarView);
-        botonAgregarEvento = (Button) findViewById(R.id.botonNuevoEvento);
+        botonAgregarEvento = (ImageButton) findViewById(R.id.botonNuevoEvento);
         botonCerrarSesion = (Button) findViewById(R.id.botonCerrarSesion);
         botonMetas = (Button) findViewById(R.id.botonMetas);
         listaEventos = (ListView) findViewById(R.id.listaEventos);
+        boton_memes = (ImageButton) findViewById(R.id.botonMemes);
         horario = new ArrayList<>();
         eventosDia = new ArrayList<>();
     }
+
 }
