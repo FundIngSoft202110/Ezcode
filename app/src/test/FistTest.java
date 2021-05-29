@@ -1,6 +1,7 @@
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -21,6 +22,7 @@ public class FistTest {
 
     AndroidDriver<AndroidElement> driver;
 
+    @BeforeClass
     public void setUp() throws MalformedURLException{
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
@@ -34,7 +36,6 @@ public class FistTest {
     }
     @Test
     public void testAutenticacion() throws MalformedURLException {
-        setUp();
         MobileElement el2 = (MobileElement) driver.findElementById("EZCode.Pantallas:id/campoCorreo");
         el2.sendKeys("dani.monsalveg@gmail.com");
         MobileElement el3 = (MobileElement) driver.findElementById("EZCode.Pantallas:id/campoPassword");
