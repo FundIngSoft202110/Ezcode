@@ -1,6 +1,5 @@
 #!/bin/bash
 set -ex
-sudo chown -R $USER /usr/local/lib/node_modules
-npm install -g appium
+sudo npm install -g appium --unsafe-perm=true --allow-root
 appium -v
 appium &>/dev/null &
