@@ -25,6 +25,8 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
+    - name: Appium Server Action
+      uses: moatazeldebsy/Appium-Server-GitHub-Action@V1.0.5
     - name: Install and Run Appium Server
       run: |
         chmod +x ./scripts/RunAppiumServer.sh # install and run appium server in the background
