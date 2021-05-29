@@ -15,13 +15,10 @@ public class Clase extends Evento{
         this.profesor = profesor;
         this.salon = salon;
     }
-
-    @Override
-    public List<String> getSubAtributos() {
-        List<String> retorno = new ArrayList<>();
-        retorno.add(profesor);
-        retorno.add(salon);
-        return retorno;
+    public Clase(Calendar horaInicial, Calendar horaFinal, String nombre, String profesor, String salon, int ID) {
+        super(horaInicial, horaFinal, nombre, ID);
+        this.profesor = profesor;
+        this.salon = salon;
     }
 
     @Override
@@ -42,6 +39,7 @@ public class Clase extends Evento{
     @Override
     public String toString() {
         return "Clase{" +
+                super.toString() +
                 "profesor='" + profesor + '\'' +
                 ", salon='" + salon + '\'' +
                 '}';
@@ -66,4 +64,5 @@ public class Clase extends Evento{
     public void setSalon(String salon) {
         this.salon = salon;
     }
+
 }

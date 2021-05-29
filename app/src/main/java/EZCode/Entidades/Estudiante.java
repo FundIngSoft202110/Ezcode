@@ -2,22 +2,24 @@ package EZCode.Entidades;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Estudiante implements Serializable {
     private String Nombre;
     private String Correo;
     private String Password;
-    private int ID;
+    private String ID;
     private int EZpuntos;
-    private ArrayList<Meta> Metas;
-    private ArrayList<Evento> horario;
+    private List<Meta> Metas;
+    private List<Evento> horario;
     private static Estudiante instance;
 
-    public ArrayList<Evento> getHorario() {
+
+    public List<Evento> getHorario() {
         return horario;
     }
 
-    public void setHorario(ArrayList<Evento> horario) {
+    public void setHorario(List<Evento> horario) {
         this.horario = horario;
     }
 
@@ -27,15 +29,15 @@ public class Estudiante implements Serializable {
         }
         return instance;
     }
-    public static synchronized void setInstance(Estudiante estudiante){
-        instance = estudiante;
-    }
+
     public Estudiante() {
         this.Metas = new ArrayList<>();
         this.horario = new ArrayList<>();
     }
 
-    public Estudiante(String nombre, String correo, String password, int ID, int EZpuntos) {
+
+    public Estudiante(String nombre, String correo, String password, int EZpuntos) {
+
         Nombre = nombre;
         Correo = correo;
         Password = password;
@@ -69,11 +71,11 @@ public class Estudiante implements Serializable {
         Password = password;
     }
 
-    public int getID() {
+    public String getID() {
         return ID;
     }
 
-    public void setID(int ID) {
+    public void setID(String ID) {
         this.ID = ID;
     }
 
@@ -85,11 +87,11 @@ public class Estudiante implements Serializable {
         this.EZpuntos = EZpuntos;
     }
 
-    public ArrayList<Meta> getMetas() {
+    public List<Meta> getMetas() {
         return Metas;
     }
 
-    public void setMetas(ArrayList<Meta> metas) {
+    public void setMetas(List<Meta> metas) {
         Metas = metas;
     }
 }

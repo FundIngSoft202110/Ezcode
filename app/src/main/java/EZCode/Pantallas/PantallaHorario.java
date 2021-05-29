@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -12,10 +13,24 @@ import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ListView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
+import EZCode.Controladores.ControlHorario;
+import EZCode.Entidades.Actividad;
+import EZCode.Entidades.Clase;
+import EZCode.Entidades.DTOEvento;
 import EZCode.Entidades.Estudiante;
 import EZCode.Entidades.Evento;
 
@@ -26,9 +41,14 @@ public class PantallaHorario extends AppCompatActivity {
     Button botonAgregarEvento;
     Button botonMetas;
     ListView listaEventos;
-    ArrayList<String> horario;
-    ArrayList<Evento> eventosDia;
-    ArrayAdapter adapter;
+    List<String> horario;
+    List<Evento> eventosDia;
+    FirebaseAuth autenticar;
+    FirebaseUser usuario;
+    FirebaseDatabase db;
+    DatabaseReference refEventos;
+    ControlHorario controlHorario;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +66,7 @@ public class PantallaHorario extends AppCompatActivity {
             }
         });
 
-        calendario.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+       calendario.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
                 iniciarLista(year,month,dayOfMonth);
@@ -56,7 +76,9 @@ public class PantallaHorario extends AppCompatActivity {
         botonCerrarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                autenticar.signOut();
                 cerrarSesion();
+                finish();
             }
         });
         botonAgregarEvento.setOnClickListener(new View.OnClickListener() {
@@ -67,15 +89,15 @@ public class PantallaHorario extends AppCompatActivity {
         });
         botonMetas.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                abrirPantallaMetas();
-            }
+
+            public void onClick(View v) { abrirPantallaMetas(); }
         });
 
     }
 
     private void iniciarLista(int year, int month, int day){
         horario.clear();
+        eventosDia.clear();
         int i = 0;
         for (Evento e: Estudiante.getInstance().getHorario()){
             e.setID(i);
@@ -90,9 +112,28 @@ public class PantallaHorario extends AppCompatActivity {
         }
         listaEventos.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, horario));
     }
-    private void inicializarLista(){
-        Calendar calendar = Calendar.getInstance();
-        iniciarLista(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),calendar.get(Calendar.DAY_OF_MONTH));
+    private void inicializarLista() {
+        List<DTOEvento> eventosDB = new ArrayList<>();
+        refEventos.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot data : snapshot.getChildren()) {
+                    DTOEvento ev = data.getValue(DTOEvento.class);
+                    eventosDB.add(ev);
+                }
+                try {
+                    Log.d("Eventos DB",eventosDB.toString());
+                    Estudiante.getInstance().setHorario(controlHorario.convertirAEvento(eventosDB));
+                    Calendar calendar = Calendar.getInstance();
+                    iniciarLista(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),
+                            calendar.get(Calendar.DAY_OF_MONTH));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) { }
+        });
     }
     /*
     Este metodo debería cerrar la sesión del usuario, lo cuál debería llamar un método del controlador
@@ -118,5 +159,10 @@ public class PantallaHorario extends AppCompatActivity {
         listaEventos = (ListView) findViewById(R.id.listaEventos);
         horario = new ArrayList<>();
         eventosDia = new ArrayList<>();
+        autenticar = FirebaseAuth.getInstance();
+        usuario = FirebaseAuth.getInstance().getCurrentUser();
+        db = FirebaseDatabase.getInstance();
+        refEventos = db.getReference().child("Eventos").child(usuario.getUid());
+        controlHorario = new ControlHorario();
     }
 }

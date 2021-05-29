@@ -1,13 +1,14 @@
 package EZCode.Entidades;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
-public abstract class Evento implements Serializable {
+public abstract class Evento implements Serializable{
     private Calendar horaInicial;
     private Calendar horaFinal;
     private String nombre;
@@ -21,12 +22,27 @@ public abstract class Evento implements Serializable {
         this.ID = ID;
     }
 
-    public abstract List<String> getSubAtributos();
 
     public Evento(Calendar horaInicial, Calendar horaFinal, String nombre) {
         this.horaInicial = horaInicial;
         this.horaFinal = horaFinal;
         this.nombre = nombre;
+    }
+    public Evento(Calendar horaInicial, Calendar horaFinal, String nombre, int ID) {
+        this.horaInicial = horaInicial;
+        this.horaFinal = horaFinal;
+        this.nombre = nombre;
+        this.ID = ID;
+    }
+
+    @Override
+    public String toString() {
+        SimpleDateFormat df = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+        return "horaInicial=" + df.format(horaInicial.getTime()) +
+                ", horaFinal=" + df.format(horaFinal.getTime())+
+                ", nombre='" + nombre + '\'' +
+                ", ID=" + ID +
+                '}';
     }
 
     @Override

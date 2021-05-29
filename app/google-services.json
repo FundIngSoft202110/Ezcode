@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "546111967468",
+    "project_id": "ezcode-e852f",
+    "storage_bucket": "ezcode-e852f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:546111967468:android:4b36c1afca0c9ff89ad5c9",
+        "android_client_info": {
+          "package_name": "EZCode.Pantallas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "546111967468-k6qb5aujosfnjpdkm8dmnbo99me7ee8s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "EZCode.Pantallas",
+            "certificate_hash": "ab110303a25efb682e414ef9785e15700fb2fcfc"
+          }
+        },
+        {
+          "client_id": "546111967468-ibojv4le99uuf4941t08lo50qassbqje.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzH7lkwHvm1v30xGSyQw9X8zQCQqaCo7w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "546111967468-ibojv4le99uuf4941t08lo50qassbqje.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
