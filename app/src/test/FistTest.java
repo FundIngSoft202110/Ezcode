@@ -1,13 +1,8 @@
 import org.junit.After;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -22,11 +17,10 @@ public class FistTest {
 
     AndroidDriver<AndroidElement> driver;
 
-    @BeforeClass
     public void setUp() throws MalformedURLException{
         DesiredCapabilities capabilities = new DesiredCapabilities();
 
-        capabilities.setCapability("deviceName","emulator-5554");
+        capabilities.setCapability("deviceName","Android Emulator");
         capabilities.setCapability("platformName","Android");
         capabilities.setCapability("appPackage","EZCode.Pantallas");
         capabilities.setCapability("appActivity","EZCode.Pantallas.PantallaAutenticacion");
@@ -36,6 +30,7 @@ public class FistTest {
     }
     @Test
     public void testAutenticacion() throws MalformedURLException {
+        setUp();
         MobileElement el2 = (MobileElement) driver.findElementById("EZCode.Pantallas:id/campoCorreo");
         el2.sendKeys("dani.monsalveg@gmail.com");
         MobileElement el3 = (MobileElement) driver.findElementById("EZCode.Pantallas:id/campoPassword");
