@@ -2,6 +2,7 @@ package EZCode.Entidades;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class Estudiante implements Serializable {
@@ -12,7 +13,11 @@ public class Estudiante implements Serializable {
     private int EZpuntos;
     private List<Meta> Metas;
     private List<Evento> horario;
+    private List<Evento> metasEvento;
     private static Estudiante instance;
+    Calendar inicio = Calendar.getInstance();
+
+
 
 
     public List<Evento> getHorario() {
@@ -93,5 +98,15 @@ public class Estudiante implements Serializable {
 
     public void setMetas(List<Meta> metas) {
         Metas = metas;
+    }
+
+    public List<Evento> getMetasEvento(){return metasEvento;};
+
+    public void setInicio(Calendar inicio) {
+        this.inicio = inicio;
+    }
+
+    public Calendar getInicio() {
+        return inicio;
     }
 }

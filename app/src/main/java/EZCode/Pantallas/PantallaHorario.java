@@ -3,6 +3,7 @@ package EZCode.Pantallas;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,12 +29,11 @@ import java.util.Calendar;
 import java.util.List;
 
 import EZCode.Controladores.ControlHorario;
-import EZCode.Entidades.Actividad;
-import EZCode.Entidades.Clase;
+import EZCode.Controladores.ControlMetas;
 import EZCode.Entidades.DTOEvento;
 import EZCode.Entidades.Estudiante;
 import EZCode.Entidades.Evento;
-
+import android.app.AlarmManager;
 public class PantallaHorario extends AppCompatActivity {
 
     CalendarView calendario;
@@ -48,6 +48,8 @@ public class PantallaHorario extends AppCompatActivity {
     FirebaseDatabase db;
     DatabaseReference refEventos;
     ControlHorario controlHorario;
+    ControlMetas controlMetas;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +58,24 @@ public class PantallaHorario extends AppCompatActivity {
 
         iniciarlizarAtributos();
         inicializarLista();
+
+        Estudiante.getInstance().getInicio().set(Calendar.HOUR_OF_DAY, 0);
+        Estudiante.getInstance().getInicio().clear(Calendar.MINUTE);
+        Estudiante.getInstance().getInicio().clear(Calendar.SECOND);
+        Estudiante.getInstance().getInicio().clear(Calendar.MILLISECOND);
+        Estudiante.getInstance().getInicio().set(Calendar.DAY_OF_WEEK,  Estudiante.getInstance().getInicio().getFirstDayOfWeek());
+
+
+        Intent intent = new Intent(getApplicationContext(), AlarmaMetaEvento.class);
+        PendingIntent pi = PendingIntent.getBroadcast(getApplicationContext(), 0, intent, 0);
+        AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
+
+
+        //long interval = calendar.getTimeInMillis() + 604800000L;
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, Estudiante.getInstance().getInicio().getTimeInMillis(), AlarmManager.INTERVAL_DAY * 7, pi);
+
+
+
 
         listaEventos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -164,5 +184,6 @@ public class PantallaHorario extends AppCompatActivity {
         db = FirebaseDatabase.getInstance();
         refEventos = db.getReference().child("Eventos").child(usuario.getUid());
         controlHorario = new ControlHorario();
+        controlMetas = new ControlMetas();
     }
 }
