@@ -39,10 +39,6 @@ public class PantallaMoficarMeta extends AppCompatActivity implements AdapterVie
     FirebaseAuth autenticacion = FirebaseAuth.getInstance();
     String id;
 
-
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

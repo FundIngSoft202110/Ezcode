@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -41,6 +42,7 @@ public class PantallaHorario extends AppCompatActivity {
     Button botonAgregarEvento;
     Button botonMetas;
     ListView listaEventos;
+    TextView bienvenida;
     List<String> horario;
     List<Evento> eventosDia;
     FirebaseAuth autenticar;
@@ -48,6 +50,7 @@ public class PantallaHorario extends AppCompatActivity {
     FirebaseDatabase db;
     DatabaseReference refEventos;
     ControlHorario controlHorario;
+    String nombre;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -135,10 +138,6 @@ public class PantallaHorario extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) { }
         });
     }
-    /*
-    Este metodo debería cerrar la sesión del usuario, lo cuál debería llamar un método del controlador
-    que permita guardar todo en la BD, por ahora solo vuelve a la pantalla de autenticación
-     */
     private void cerrarSesion(){
         Intent intent = new Intent(this, PantallaAutenticacion.class);
         startActivity(intent);
@@ -157,6 +156,7 @@ public class PantallaHorario extends AppCompatActivity {
         botonCerrarSesion = (Button) findViewById(R.id.botonCerrarSesion);
         botonMetas = (Button) findViewById(R.id.botonMetas);
         listaEventos = (ListView) findViewById(R.id.listaEventos);
+        bienvenida = (TextView) findViewById(R.id.textView7);
         horario = new ArrayList<>();
         eventosDia = new ArrayList<>();
         autenticar = FirebaseAuth.getInstance();
@@ -164,5 +164,20 @@ public class PantallaHorario extends AppCompatActivity {
         db = FirebaseDatabase.getInstance();
         refEventos = db.getReference().child("Eventos").child(usuario.getUid());
         controlHorario = new ControlHorario();
+        //Dar la bienvenida
+
+        DatabaseReference ref = db.getReference();
+
+        ref.child("Estudiantes").child(usuario.getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+               nombre =  snapshot.child("nombre").getValue().toString();
+               bienvenida.setText("Horario de " + nombre);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) { }
+        });
+
     }
 }

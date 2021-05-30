@@ -91,8 +91,6 @@ public class PantallaAutenticacion extends AppCompatActivity {
                 if(task.isSuccessful()){
                     abrirPantallaPrincipal();
                     Estudiante.getInstance().setID(autenticacion.getCurrentUser().getUid());
-                    Toast.makeText(PantallaAutenticacion.this,
-                            Estudiante.getInstance().getID(), Toast.LENGTH_SHORT).show();
                     cargar();
                 }
                 else {
@@ -126,7 +124,7 @@ public class PantallaAutenticacion extends AppCompatActivity {
         data.child("Estudiantes").child(autenticacion.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull  DataSnapshot snapshot) {
-                //Toast.makeText(PantallaAutenticacion.this, "Bienvenido  " + snapshott.child("nombre").getValue(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(PantallaAutenticacion.this, "Bienvenido  " + snapshot.child("nombre").getValue(), Toast.LENGTH_SHORT).show();
             }
             @Override
             public void onCancelled(@NonNull  DatabaseError error) {
