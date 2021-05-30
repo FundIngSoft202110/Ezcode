@@ -31,6 +31,7 @@ public class FistTest {
     @Test
     public void testAutenticacion() throws MalformedURLException {
         setUp();
+        System.out.println("Corriendo Test Autenticacion");
         MobileElement el2 = (MobileElement) driver.findElementById("EZCode.Pantallas:id/campoCorreo");
         el2.sendKeys("dani.monsalveg@gmail.com");
         MobileElement el3 = (MobileElement) driver.findElementById("EZCode.Pantallas:id/campoPassword");
