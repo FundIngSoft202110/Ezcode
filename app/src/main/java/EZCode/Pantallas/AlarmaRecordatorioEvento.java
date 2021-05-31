@@ -1,4 +1,4 @@
-package EZCode.Pantallas;
+package main.java.EZCode.Pantallas;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;

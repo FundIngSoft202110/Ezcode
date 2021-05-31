@@ -1,4 +1,4 @@
-package EZCode.Entidades;
+package main.java.EZCode.Entidades;
 
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package EZCode.Pantallas;
+package main.java.EZCode.Pantallas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,7 +9,6 @@ import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -27,10 +26,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import EZCode.Entidades.Actividad;
-import EZCode.Entidades.Clase;
-import EZCode.Entidades.Evento;
-import EZCode.Controladores.ControlHorario;
+import main.java.EZCode.Entidades.Actividad;
+import main.java.EZCode.Entidades.Clase;
+import main.java.EZCode.Entidades.Evento;
+import main.java.EZCode.Controladores.ControlHorario;
 
 public class PantallaAgregarEvento extends AppCompatActivity {
 

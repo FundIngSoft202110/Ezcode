@@ -1,4 +1,4 @@
-package EZCode.Entidades;
+package main.java.EZCode.Entidades;
 
 import java.util.ArrayList;
 import java.util.Calendar;

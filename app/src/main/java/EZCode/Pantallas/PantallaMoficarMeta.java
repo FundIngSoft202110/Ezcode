@@ -1,4 +1,4 @@
-package EZCode.Pantallas;
+package main.java.EZCode.Pantallas;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,7 +22,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
 
-import EZCode.Entidades.Meta;
+import main.java.EZCode.Entidades.Meta;
 
 public class PantallaMoficarMeta extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 

@@ -1,4 +1,4 @@
-package EZCode.Pantallas;
+package main.java.EZCode.Pantallas;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,12 +28,12 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import EZCode.Controladores.ControlHorario;
-import EZCode.Entidades.Actividad;
-import EZCode.Entidades.Clase;
-import EZCode.Entidades.DTOEvento;
-import EZCode.Entidades.Estudiante;
-import EZCode.Entidades.Evento;
+import main.java.EZCode.Controladores.ControlHorario;
+import main.java.EZCode.Entidades.Actividad;
+import main.java.EZCode.Entidades.Clase;
+import main.java.EZCode.Entidades.DTOEvento;
+import main.java.EZCode.Entidades.Estudiante;
+import main.java.EZCode.Entidades.Evento;
 
 public class PantallaHorario extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package EZCode.Entidades;
+package main.java.EZCode.Entidades;
 
 
 public class DTOEvento {

@@ -1,4 +1,4 @@
-package EZCode.Pantallas;
+package main.java.EZCode.Pantallas;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,7 +18,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-import EZCode.Entidades.Meta;
+import main.java.EZCode.Entidades.Meta;
 
 public class PantallaMetas extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package EZCode.Pantallas;
+package main.java.EZCode.Pantallas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,10 +18,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import EZCode.Entidades.Actividad;
-import EZCode.Entidades.Clase;
-import EZCode.Entidades.Evento;
-import EZCode.Controladores.ControlHorario;
+import main.java.EZCode.Entidades.Actividad;
+import main.java.EZCode.Entidades.Clase;
+import main.java.EZCode.Entidades.Evento;
+import main.java.EZCode.Controladores.ControlHorario;
 
 public class PantallaModificarEvento extends AppCompatActivity {
 

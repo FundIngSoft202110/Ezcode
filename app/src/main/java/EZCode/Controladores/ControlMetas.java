@@ -1,6 +1,6 @@
-package EZCode.Controladores;
+package main.java.EZCode.Controladores;
 
-import EZCode.Entidades.*;
+import main.java.EZCode.Entidades.*;
 
 public class ControlMetas {
 

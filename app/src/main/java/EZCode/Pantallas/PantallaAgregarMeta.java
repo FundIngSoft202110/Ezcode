@@ -1,4 +1,4 @@
-package EZCode.Pantallas;
+package main.java.EZCode.Pantallas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,8 +18,8 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import EZCode.Entidades.Meta;
-import EZCode.Controladores.ControlMetas;
+import main.java.EZCode.Entidades.Meta;
+import main.java.EZCode.Controladores.ControlMetas;
 
 
 public class PantallaAgregarMeta extends AppCompatActivity implements AdapterView.OnItemSelectedListener{

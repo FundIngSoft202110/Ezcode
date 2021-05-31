@@ -37,13 +37,8 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-    sourceSets {
-        test {
-            java {
-                srcDirs 'src\\main\\java', 'src\\test'
-            }
-        }
-    }
+    sourceSets.main.java.srcDirs = ['src']
+    sourceSets.test.java.srcDirs = ['test']
     testOptions {
         unitTests.all {
             // Always run tests, even when nothing changed.
