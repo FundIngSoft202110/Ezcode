@@ -57,7 +57,7 @@ public class PantallaMetas extends AppCompatActivity {
         listaMetas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> arrayadapter, View view, int position, long id) {
-                Intent intent = new Intent(getApplicationContext(), PantallaModificarMeta.class);
+                Intent intent = new Intent(getApplicationContext(), PantallaMoficarMeta.class);
                 intent.putExtra("Meta", Estudiante.getInstance().getMetas().get(position));
                 intent.putExtra("indice",position);
                 startActivity(intent);
