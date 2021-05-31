@@ -38,7 +38,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
     sourceSets {
-        main {
+        test {
             java {
                 srcDirs 'src\\main\\java', 'src\\test'
             }
