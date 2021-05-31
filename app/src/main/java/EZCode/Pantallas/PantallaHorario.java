@@ -3,7 +3,6 @@ package EZCode.Pantallas;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -13,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CalendarView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -29,11 +29,12 @@ import java.util.Calendar;
 import java.util.List;
 
 import EZCode.Controladores.ControlHorario;
-import EZCode.Controladores.ControlMetas;
+import EZCode.Entidades.Actividad;
+import EZCode.Entidades.Clase;
 import EZCode.Entidades.DTOEvento;
 import EZCode.Entidades.Estudiante;
 import EZCode.Entidades.Evento;
-import android.app.AlarmManager;
+
 public class PantallaHorario extends AppCompatActivity {
 
     CalendarView calendario;
@@ -41,6 +42,7 @@ public class PantallaHorario extends AppCompatActivity {
     Button botonAgregarEvento;
     Button botonMetas;
     ListView listaEventos;
+    TextView bienvenida;
     List<String> horario;
     List<Evento> eventosDia;
     FirebaseAuth autenticar;
@@ -48,8 +50,7 @@ public class PantallaHorario extends AppCompatActivity {
     FirebaseDatabase db;
     DatabaseReference refEventos;
     ControlHorario controlHorario;
-    ControlMetas controlMetas;
-
+    String nombre;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,24 +59,6 @@ public class PantallaHorario extends AppCompatActivity {
 
         iniciarlizarAtributos();
         inicializarLista();
-
-        Estudiante.getInstance().getInicio().set(Calendar.HOUR_OF_DAY, 0);
-        Estudiante.getInstance().getInicio().clear(Calendar.MINUTE);
-        Estudiante.getInstance().getInicio().clear(Calendar.SECOND);
-        Estudiante.getInstance().getInicio().clear(Calendar.MILLISECOND);
-        Estudiante.getInstance().getInicio().set(Calendar.DAY_OF_WEEK,  Estudiante.getInstance().getInicio().getFirstDayOfWeek());
-
-
-        Intent intent = new Intent(getApplicationContext(), AlarmaMetaEvento.class);
-        PendingIntent pi = PendingIntent.getBroadcast(getApplicationContext(), 0, intent, 0);
-        AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
-
-
-        //long interval = calendar.getTimeInMillis() + 604800000L;
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, Estudiante.getInstance().getInicio().getTimeInMillis(), AlarmManager.INTERVAL_DAY * 7, pi);
-
-
-
 
         listaEventos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -155,10 +138,6 @@ public class PantallaHorario extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) { }
         });
     }
-    /*
-    Este metodo debería cerrar la sesión del usuario, lo cuál debería llamar un método del controlador
-    que permita guardar todo en la BD, por ahora solo vuelve a la pantalla de autenticación
-     */
     private void cerrarSesion(){
         Intent intent = new Intent(this, PantallaAutenticacion.class);
         startActivity(intent);
@@ -177,6 +156,7 @@ public class PantallaHorario extends AppCompatActivity {
         botonCerrarSesion = (Button) findViewById(R.id.botonCerrarSesion);
         botonMetas = (Button) findViewById(R.id.botonMetas);
         listaEventos = (ListView) findViewById(R.id.listaEventos);
+        bienvenida = (TextView) findViewById(R.id.textView7);
         horario = new ArrayList<>();
         eventosDia = new ArrayList<>();
         autenticar = FirebaseAuth.getInstance();
@@ -184,6 +164,20 @@ public class PantallaHorario extends AppCompatActivity {
         db = FirebaseDatabase.getInstance();
         refEventos = db.getReference().child("Eventos").child(usuario.getUid());
         controlHorario = new ControlHorario();
-        controlMetas = new ControlMetas();
+        //Dar la bienvenida
+
+        DatabaseReference ref = db.getReference();
+
+        ref.child("Estudiantes").child(usuario.getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+               nombre =  snapshot.child("nombre").getValue().toString();
+               bienvenida.setText("Horario de " + nombre);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) { }
+        });
+
     }
 }

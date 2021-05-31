@@ -2,6 +2,8 @@ package EZCode.Pantallas;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -18,6 +20,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
+import EZCode.Entidades.Estudiante;
 import EZCode.Entidades.Meta;
 import EZCode.Controladores.ControlMetas;
 
@@ -29,6 +32,7 @@ public class PantallaAgregarMeta extends AppCompatActivity implements AdapterVie
     Spinner spinnerPrioridad;
     Button botonAgregarMeta;
     Button botonCancelar;
+    Calendar fechaInicio;
     TextView errores;
     String Id = PantallaAutenticacion.autenticacion.getCurrentUser().getUid();
 
@@ -41,6 +45,16 @@ public class PantallaAgregarMeta extends AppCompatActivity implements AdapterVie
 
         inicializarAtributos();
         iniciarSpinner();
+
+        //fechaInicio.set(Calendar.DAY_OF_WEEK,  Estudiante.getInstance().getInicio().getFirstDayOfWeek());
+
+
+
+
+
+
+
+
 
         botonAgregarMeta.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,6 +76,29 @@ public class PantallaAgregarMeta extends AppCompatActivity implements AdapterVie
 
                 PantallaAutenticacion.data.child("Estudiantes").child(Id).child("Metas").child(nombre).setValue(meta);
                 Toast.makeText(PantallaAgregarMeta.this, "Se agregó una meta", Toast.LENGTH_SHORT).show();
+
+
+
+
+
+                fechaInicio = Calendar.getInstance();
+                /*fechaInicio.set(Calendar.HOUR_OF_DAY, 0);
+                fechaInicio.clear(Calendar.MINUTE);
+                fechaInicio.clear(Calendar.SECOND);
+                fechaInicio.clear(Calendar.MILLISECOND);
+                fechaInicio.add(Calendar.DAY_OF_WEEK,2);*/
+                fechaInicio.add(Calendar.MINUTE,1);
+
+                Intent intent = new Intent(getApplicationContext(), AlarmaMetaEvento.class);
+                intent.putExtra("message", nombre);
+                PendingIntent pi = PendingIntent.getBroadcast(getApplicationContext(), 0, intent,PendingIntent.FLAG_CANCEL_CURRENT);
+                AlarmManager alarmManager = (AlarmManager)getSystemService(ALARM_SERVICE);
+                alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, fechaInicio.getTimeInMillis(), AlarmManager.INTERVAL_DAY * 7, pi);
+                //alarmManager.set(AlarmManager.RTC_WAKEUP,fechaInicio.getTimeInMillis(),pi);
+                Toast.makeText(PantallaAgregarMeta.this, fechaInicio.toString(), Toast.LENGTH_SHORT).show();
+
+
+
                 volverPantallaMetas();
 
             }
