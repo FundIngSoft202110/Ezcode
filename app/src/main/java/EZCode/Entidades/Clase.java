@@ -15,13 +15,10 @@ public class Clase extends Evento{
         this.profesor = profesor;
         this.salon = salon;
     }
-
-    @Override
-    public List<String> getSubAtributos() {
-        List<String> retorno = new ArrayList<>();
-        retorno.add(profesor);
-        retorno.add(salon);
-        return retorno;
+    public Clase(Calendar horaInicial, Calendar horaFinal, String nombre, String profesor, String salon, int ID) {
+        super(horaInicial, horaFinal, nombre, ID);
+        this.profesor = profesor;
+        this.salon = salon;
     }
 
     @Override

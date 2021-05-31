@@ -95,7 +95,7 @@ public class PantallaRegistro extends AppCompatActivity {
                         public void onComplete(@NonNull  Task<Void> task2) {
                             if(task2.isSuccessful()){
                                inicio();
-                               Toast.makeText(PantallaRegistro.this, "Registro Exitoso!", Toast.LENGTH_SHORT).show();
+                               Toast.makeText(PantallaRegistro.this, "Registro Exitoso! "+ est.getNombre(), Toast.LENGTH_SHORT).show();
                                finish();
                             }
                             else{

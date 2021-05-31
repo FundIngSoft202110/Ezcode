@@ -22,12 +22,17 @@ public abstract class Evento implements Serializable{
         this.ID = ID;
     }
 
-    public abstract List<String> getSubAtributos();
 
     public Evento(Calendar horaInicial, Calendar horaFinal, String nombre) {
         this.horaInicial = horaInicial;
         this.horaFinal = horaFinal;
         this.nombre = nombre;
+    }
+    public Evento(Calendar horaInicial, Calendar horaFinal, String nombre, int ID) {
+        this.horaInicial = horaInicial;
+        this.horaFinal = horaFinal;
+        this.nombre = nombre;
+        this.ID = ID;
     }
 
     @Override
