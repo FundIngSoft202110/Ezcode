@@ -5,12 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -39,12 +39,13 @@ public class PantallaHorario extends AppCompatActivity {
 
     CalendarView calendario;
     Button botonCerrarSesion;
-    Button botonAgregarEvento;
+    ImageButton botonAgregarEvento;
     Button botonMetas;
     ListView listaEventos;
-    TextView bienvenida;
     List<String> horario;
     List<Evento> eventosDia;
+    ImageButton boton_memes;
+    TextView bienvenida;
     FirebaseAuth autenticar;
     FirebaseUser usuario;
     FirebaseDatabase db;
@@ -76,14 +77,14 @@ public class PantallaHorario extends AppCompatActivity {
             }
         });
 
-        botonCerrarSesion.setOnClickListener(new View.OnClickListener() {
+       botonCerrarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 autenticar.signOut();
                 cerrarSesion();
                 finish();
             }
-        });
+       });
         botonAgregarEvento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -92,15 +93,21 @@ public class PantallaHorario extends AppCompatActivity {
         });
         botonMetas.setOnClickListener(new View.OnClickListener() {
             @Override
-
-            public void onClick(View v) { abrirPantallaMetas(); }
+            public void onClick(View v) {
+                abrirPantallaMetas();
+            }
+        });
+        boton_memes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                abrirPantallaMemes();
+            }
         });
 
     }
 
     private void iniciarLista(int year, int month, int day){
         horario.clear();
-        eventosDia.clear();
         int i = 0;
         for (Evento e: Estudiante.getInstance().getHorario()){
             e.setID(i);
@@ -115,7 +122,7 @@ public class PantallaHorario extends AppCompatActivity {
         }
         listaEventos.setAdapter(new ArrayAdapter(this, android.R.layout.simple_list_item_1, horario));
     }
-    private void inicializarLista() {
+    private void inicializarLista(){
         List<DTOEvento> eventosDB = new ArrayList<>();
         refEventos.addValueEventListener(new ValueEventListener() {
             @Override
@@ -125,7 +132,7 @@ public class PantallaHorario extends AppCompatActivity {
                     eventosDB.add(ev);
                 }
                 try {
-                    Log.d("Eventos DB",eventosDB.toString());
+                    //Log.d("Eventos DB",eventosDB.toString());
                     Estudiante.getInstance().setHorario(controlHorario.convertirAEvento(eventosDB));
                     Calendar calendar = Calendar.getInstance();
                     iniciarLista(calendar.get(Calendar.YEAR),calendar.get(Calendar.MONTH),
@@ -138,6 +145,10 @@ public class PantallaHorario extends AppCompatActivity {
             public void onCancelled(@NonNull DatabaseError error) { }
         });
     }
+    /*
+    Este metodo debería cerrar la sesión del usuario, lo cuál debería llamar un método del controlador
+    que permita guardar todo en la BD, por ahora solo vuelve a la pantalla de autenticación
+     */
     private void cerrarSesion(){
         Intent intent = new Intent(this, PantallaAutenticacion.class);
         startActivity(intent);
@@ -150,9 +161,14 @@ public class PantallaHorario extends AppCompatActivity {
         Intent intent = new Intent(this, PantallaMetas.class);
         startActivity(intent);
     }
+    private void abrirPantallaMemes(){
+        Intent intent = new Intent(this, PantallaBoost.class);
+        startActivity(intent);
+    }
     private void iniciarlizarAtributos(){
         calendario =  (CalendarView) findViewById(R.id.calendarView);
-        botonAgregarEvento = (Button) findViewById(R.id.botonNuevoEvento);
+        botonAgregarEvento = (ImageButton) findViewById(R.id.botonNuevoEvento);
+        boton_memes = (ImageButton) findViewById(R.id.botonMemes);
         botonCerrarSesion = (Button) findViewById(R.id.botonCerrarSesion);
         botonMetas = (Button) findViewById(R.id.botonMetas);
         listaEventos = (ListView) findViewById(R.id.listaEventos);
@@ -171,13 +187,13 @@ public class PantallaHorario extends AppCompatActivity {
         ref.child("Estudiantes").child(usuario.getUid()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-               nombre =  snapshot.child("nombre").getValue().toString();
-               bienvenida.setText("Horario de " + nombre);
+                nombre =  snapshot.child("nombre").getValue().toString();
+                bienvenida.setText("Horario de " + nombre);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) { }
         });
-
     }
+
 }

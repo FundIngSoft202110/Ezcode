@@ -4,42 +4,49 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PantallaMoficarMeta">
+    android:background="@drawable/gradient_background260"
+    tools:context=".PantallaModificarMeta">
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
+        android:fontFamily="@font/ubuntu_medium"
         android:text="Modificar Meta"
         android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/nuevoNombreMeta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_width="286dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="72dp"
+        android:background="@drawable/textfieldstyle"
+        android:backgroundTint="@color/FondoBorroso"
         android:ems="10"
-        android:hint="Nombre"
         android:inputType="textPersonName"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.206"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <EditText
         android:id="@+id/nuevaDescripcionMeta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_width="286dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/textfieldstyle"
+        android:backgroundTint="@color/FondoBorroso"
         android:ems="10"
-        android:hint="Descripción"
         android:inputType="textPersonName"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.203"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nuevoNombreMeta" />
 
@@ -48,23 +55,24 @@
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="250dp"
         android:layout_height="20dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="40dp"
         android:max="100"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nuevoProgresoMeta" />
 
     <EditText
         android:id="@+id/nuevoProgresoMeta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_width="286dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/textfieldstyle"
+        android:backgroundTint="@color/FondoBorroso"
         android:ems="10"
-        android:hint="Progreso actual"
         android:inputType="textPersonName"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.203"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerModificarPrioridad" />
 
@@ -72,10 +80,13 @@
         android:id="@+id/botonConfirmarMeta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Actualizar Meta"
+        android:layout_marginTop="40dp"
+        android:text="Confirmar cambios"
+        android:textColor="@color/black"
+        android:fontFamily="@font/roboto_medium"
+        android:backgroundTint="@color/Botones"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.191"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/progresoMeta" />
 
@@ -83,21 +94,21 @@
         android:id="@+id/botonBorrarMeta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="128dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="36dp"
         android:text="Eliminar Meta"
+        android:textColor="@color/white"
+        android:fontFamily="@font/roboto_medium"
+        style="@style/Widget.AppCompat.Button.Borderless"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/botonConfirmarMeta" />
 
     <Spinner
         android:id="@+id/spinnerModificarPrioridad"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="100dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_width="214dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="32dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nuevaDescripcionMeta" />
 
@@ -105,45 +116,53 @@
         android:id="@+id/textView18"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="92dp"
-        android:text="Nombre"
+        android:layout_marginStart="36dp"
+        android:text="@string/nombre"
+        android:fontFamily="@font/ubuntu"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/nuevoNombreMeta"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6"
-        app:layout_constraintVertical_bias="0.853" />
+        app:layout_constraintVertical_bias="0.811" />
 
     <TextView
         android:id="@+id/textView19"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="92dp"
-        android:text="Descripción"
+        android:layout_marginStart="36dp"
+        android:text="@string/descripci_n"
+        android:fontFamily="@font/ubuntu"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/nuevaDescripcionMeta"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nuevoNombreMeta"
-        app:layout_constraintVertical_bias="0.588" />
+        app:layout_constraintVertical_bias="0.56" />
 
     <TextView
         android:id="@+id/textView20"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="92dp"
+        android:layout_marginStart="36dp"
         android:text="Prioridad"
+        android:fontFamily="@font/ubuntu"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/spinnerModificarPrioridad"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nuevaDescripcionMeta"
-        app:layout_constraintVertical_bias="0.64" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/textView21"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="92dp"
+        android:layout_marginStart="36dp"
         android:text="Progreso actual"
+        android:fontFamily="@font/ubuntu"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/nuevoProgresoMeta"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerModificarPrioridad"
-        app:layout_constraintVertical_bias="0.571" />
+        app:layout_constraintVertical_bias="0.689" />
 
     <TextView
         android:id="@+id/erroresModificarMeta"
@@ -154,4 +173,5 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

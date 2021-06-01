@@ -1,49 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_background260"
     tools:context=".PantallaAgregarMeta">
+
+    <ImageView
+        android:id="@+id/imageView"
+        style="@style/CardView.Light"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/rayos_fondo"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="-25dp" />
+
+    <TextView
+        android:id="@+id/labelNombreMeta"
+        android:layout_width="132dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/ubuntu"
+        android:text="@string/nombre"
+        android:textColor="@color/white"
+        android:textSize="14dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <TextView
+        android:id="@+id/labeldescrip"
+        android:layout_width="132dp"
+        android:layout_height="19dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="12dp"
+        android:fontFamily="@font/ubuntu"
+        android:text="@string/descripci_n"
+        android:textColor="@color/white"
+        android:textSize="14dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/campoNombreMeta" />
 
     <TextView
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="Nueva Meta"
+        android:layout_marginTop="44dp"
+        android:fontFamily="@font/ubuntu_medium"
+        android:text="@string/nueva_meta"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.131"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/campoDescripcionMeta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:hint="Descripción"
-        android:inputType="textMultiLine"
+        android:layout_width="286dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/textfieldstyle"
+        android:backgroundTint="@color/FondoBorroso"
+        android:fontFamily="@font/ubuntu_medium"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.224"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/campoNombreMeta" />
+        app:layout_constraintTop_toBottomOf="@+id/labeldescrip" />
 
     <EditText
         android:id="@+id/campoNombreMeta"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:ems="10"
-        android:hint="Nombre"
-        android:inputType="textPersonName"
+        android:layout_width="286dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/textfieldstyle"
+        android:backgroundTint="@color/FondoBorroso"
+        android:fontFamily="@font/ubuntu_medium"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.232"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textoErrorMeta" />
+        app:layout_constraintTop_toBottomOf="@+id/labelNombreMeta" />
 
     <TextView
         android:id="@+id/textoErrorMeta"
@@ -59,45 +99,50 @@
         android:id="@+id/botonAgregarMeta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="72dp"
-        android:text="Agregar Meta"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="12dp"
+        android:backgroundTint="@color/Botones"
+
+
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/agregar_meta"
+        android:textColor="@android:color/background_dark"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/spinnerPrioridad" />
 
     <Button
         android:id="@+id/botonCancelarMetaNueva"
+        style="@style/Widget.AppCompat.Button.Borderless"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="Cancelar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/material_on_background_disabled"
+        android:fontFamily="@font/roboto_medium"
+        android:text="@string/cancelar"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/botonAgregarMeta" />
 
     <Spinner
         android:id="@+id/spinnerPrioridad"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="100dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_width="249dp"
+        android:layout_height="38dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="12dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/campoDescripcionMeta" />
+        app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
     <TextView
         android:id="@+id/textView17"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="100dp"
-        android:text="Prioridad (1=alta, 5=baja)"
-        app:layout_constraintBottom_toTopOf="@+id/spinnerPrioridad"
+        android:layout_width="161dp"
+        android:layout_height="13dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/ubuntu"
+        android:text="@string/prioridad_1_alta_5_baja"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/campoDescripcionMeta"
-        app:layout_constraintVertical_bias="0.517" />
+        app:layout_constraintTop_toBottomOf="@+id/campoDescripcionMeta" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,9 +24,9 @@ import com.google.firebase.database.ValueEventListener;
 
 import main.java.EZCode.Entidades.Meta;
 
-public class PantallaMoficarMeta extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class PantallaModificarMeta extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
-    public Meta meta;
+    Meta meta;
     int indice;
     TextView errores;
     EditText nombre;
@@ -38,11 +38,13 @@ public class PantallaMoficarMeta extends AppCompatActivity implements AdapterVie
     ProgressBar barraProgreso;
     FirebaseAuth autenticacion = FirebaseAuth.getInstance();
     String id;
+    Integer puntos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pantalla_modificar_meta);
+
         inicializar();
         cargardt();
         iniciarSpinner();
@@ -53,7 +55,7 @@ public class PantallaMoficarMeta extends AppCompatActivity implements AdapterVie
             public void onClick(View v) {
 
                 if(!verificarCampos()) {
-                    Toast.makeText(PantallaMoficarMeta.this, "Verifique que todos los campos esten llenos", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PantallaModificarMeta.this, "Verifique que todos los campos esten llenos", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 actualizar();
@@ -67,26 +69,21 @@ public class PantallaMoficarMeta extends AppCompatActivity implements AdapterVie
             public void onClick(View v) {
                 eliminar();
                 volverPantallaMetas();
-
-
             }
         });
 
     }
 
     private void  cargardt(){
-        meta= (Meta) getIntent().getExtras().getSerializable("item");
         PantallaAutenticacion.data.child("Estudiantes").child(id).child("Metas").child(meta.getNombre()).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull  DataSnapshot snapshot) {
                 if(snapshot.exists()) {
-
                     nombre.setText(meta.getNombre());
                     descripcion.setText(snapshot.child("descripcion").getValue().toString());
                     progreso.setText(snapshot.child("progreso").getValue().toString());
                     prioridad.setSelection(Integer.parseInt(snapshot.child("prioridad").getValue().toString())-1);
-
-
+                    barraProgreso.setProgress(Integer.parseInt(snapshot.child("progreso").getValue().toString()));
                 }
                 else { volverPantallaMetas();}
             }
@@ -96,7 +93,6 @@ public class PantallaMoficarMeta extends AppCompatActivity implements AdapterVie
 
             }
         });
-
     }
     private void volverPantallaMetas(){
         Intent intent = new Intent(getApplicationContext(), PantallaMetas.class);
@@ -119,7 +115,8 @@ public class PantallaMoficarMeta extends AppCompatActivity implements AdapterVie
         barraProgreso = (ProgressBar) findViewById(R.id.progresoMeta);
         botonConfirmarCambios = (Button) findViewById(R.id.botonConfirmarMeta);
         botonEliminarMeta = (Button) findViewById(R.id.botonBorrarMeta);
-
+        meta= (Meta) getIntent().getExtras().getSerializable("item");
+        barraProgreso.setProgress(meta.getProgreso());
     }
 
     public void eliminar(){
@@ -128,7 +125,7 @@ public class PantallaMoficarMeta extends AppCompatActivity implements AdapterVie
             @Override
             public void onComplete(@NonNull  Task<Void> task) {
                 if(task.isSuccessful()) {
-                    Toast.makeText(PantallaMoficarMeta.this, "Se elimino correctamente", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PantallaModificarMeta.this, "Se elimino correctamente", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -141,21 +138,31 @@ public class PantallaMoficarMeta extends AppCompatActivity implements AdapterVie
         act.setNombre(nombre.getText().toString());
         act.setDescripcion(descripcion.getText().toString());
         act.setPrioridad(Integer.parseInt(prioridad.getSelectedItem().toString()));
-        act.setProgreso(Integer.parseInt(progreso.getText().toString()));
 
-        PantallaAutenticacion.data.child("Estudiantes").child(id).child("Metas").child(meta.getNombre()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull  Task<Void> task) {
-                if(task.isSuccessful()) {
+        if (Integer.parseInt(progreso.getText().toString()) <= 99) {
+            act.setProgreso(Integer.parseInt(progreso.getText().toString()));
+            barraProgreso.setProgress(Integer.parseInt(String.valueOf(progreso.getText().toString())));
 
-                             PantallaAutenticacion.data.child("Estudiantes").child(id).child("Metas").child(act.getNombre()).setValue(act);
-                             Toast.makeText(PantallaMoficarMeta.this, "Actualizacion exitosa", Toast.LENGTH_SHORT).show();
-                        }
-                else {
-                    Toast.makeText(PantallaMoficarMeta.this, "No se puede actualizar ", Toast.LENGTH_SHORT).show();
+            PantallaAutenticacion.data.child("Estudiantes").child(id).child("Metas").child(meta.getNombre()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+
+                        PantallaAutenticacion.data.child("Estudiantes").child(id).child("Metas").child(act.getNombre()).setValue(act);
+                        Toast.makeText(getApplicationContext(), "Actualizacion exitosa", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "No se puede actualizar ", Toast.LENGTH_SHORT).show();
+                    }
                 }
-            }
-        });
+            });
+        }
+        else if (Integer.parseInt(progreso.getText().toString()) ==100){
+            finalizado();
+        }
+        else {
+            Toast.makeText(this, "Progreso no valido", Toast.LENGTH_SHORT).show();
+            return;
+        }
     }
 
     private boolean verificarCampos(){
@@ -163,11 +170,32 @@ public class PantallaMoficarMeta extends AppCompatActivity implements AdapterVie
             return false;
         return true;
     }
+    public void finalizado() {
 
+        PantallaAutenticacion.data.child("Estudiantes").child(id).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                puntos = snapshot.child("ezpuntos").getValue(Integer.class);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) { }
+        });
+
+        PantallaAutenticacion.data.child("Estudiantes").child(id).child("ezpuntos").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                PantallaAutenticacion.data.child("Estudiantes").child(id).child("ezpuntos").setValue(puntos+10);
+                Toast.makeText(getApplicationContext(), "Meta Finalizada!!", Toast.LENGTH_SHORT).show();
+                eliminar();
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+    }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
     }
 
     @Override

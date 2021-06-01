@@ -4,48 +4,81 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/gradient_background260"
     tools:context=".PantallaMetas">
 
+    <ImageView
+        android:layout_width="72dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="28dp"
+        android:src="@drawable/flag_checkered"
+        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
-        android:id="@+id/tusmetas"
-        android:layout_width="181dp"
-        android:layout_height="69dp"
-        android:layout_marginStart="128dp"
-        android:layout_marginTop="40dp"
-        android:text="Metas"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/listmetas"
-        android:layout_width="371dp"
-        android:layout_height="365dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="108dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/botonnuevameta"
+        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="40dp"
-        android:text="Nueva Meta"
-        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:layout_marginTop="28dp"
+        android:fontFamily="@font/ubuntu_medium"
+        android:text="Tus Metas"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.088"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/botonNuevaMeta"
+        android:layout_width="37dp"
+        android:layout_height="38dp"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/grupo_214"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.803" />
+        app:layout_constraintVertical_bias="0.122" />
 
-    <Button
-        android:id="@+id/botonvolver"
+    <TextView
+        android:id="@+id/textoNoMetas"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="124dp"
-        android:text="Volver Pantalla Principal"
+        android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <Button
+        android:id="@+id/botonVolverPantallaPrincipal"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Volver "
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.136"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textoEZPuntos" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listmetas"
+        android:layout_width="318dp"
+        android:layout_height="376dp"
+        android:layout_marginTop="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textoNoMetas" />
+
+    <TextView
+        android:id="@+id/textoEZPuntos"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="24dp"
+        android:text="TextView"
+        android:textColor="#FFFFFF"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/listmetas" />
 

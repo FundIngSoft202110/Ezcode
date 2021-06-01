@@ -46,7 +46,7 @@ public class ListaAdapter extends RecyclerView.Adapter<ListaAdapter.ViewHolder> 
         holder.nombre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(holder.itemView.getContext(), PantallaMoficarMeta.class);
+                Intent intent = new Intent(holder.itemView.getContext(), PantallaModificarMeta.class);
                 intent.putExtra("item",x);
                 holder.itemView.getContext().startActivity(intent);
 

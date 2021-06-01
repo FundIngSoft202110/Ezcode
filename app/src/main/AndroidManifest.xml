@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="main.java.EZCode.Pantallas">
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -9,12 +10,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EZCode">
-        <activity android:name=".PantallaMoficarMeta"></activity>
-        <activity android:name=".PantallaMetas" />
-        <activity android:name=".PantallaModificarEvento" />
+        <activity android:name=".PantallaBoost" />
+        <activity android:name=".PantallaModificarEvento"/>
         <activity android:name=".PantallaAgregarEvento" />
+        <activity android:name=".PantallaModificarMeta" />
         <activity android:name=".PantallaAgregarMeta" />
         <activity android:name=".PantallaRegistro" />
+        <activity android:name=".PantallaMetas" />
         <activity android:name=".PantallaHorario" />
         <activity android:name=".PantallaAutenticacion">
             <intent-filter>
@@ -23,7 +25,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <receiver android:name=".AlarmaRecordatorioEvento"/>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

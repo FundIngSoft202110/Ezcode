@@ -1,5 +1,25 @@
 <resources>
     <string name="app_name">EZCode</string>
+    <string name="tu_horario">Tu horario</string>
+    <string name="agregar_evento">Agregar evento</string>
+    <string name="cerrar_sesi_n">Cerrar sesión</string>
+    <string name="nueva_meta">Nueva Meta</string>
+    <string name="descripci_n">Descripción</string>
+    <string name="nombre">Nombre</string>
+    <string name="agregar_meta">Agregar Meta</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="prioridad_1_alta_5_baja">Prioridad (1=alta, 5=baja)</string>
+    <string name="nombreEjemplo">E.J. Aprender un Italiano</string>
+    <string name="correo">Correo electrónico</string>
+    <string name="inicia_sesi_n">Inicia Sesión</string>
+    <string name="registrate">¡Registrate!</string>
+    <string name="contrasenia">Contraseña</string>
+    <string name="registro">Registrate</string>
+    <string name="mis_eventos">Mis eventos</string>
+    <string name="salir">Salir</string>
+    <string name="profesor">Profesor</string>
+    <string name="salon">Salon</string>
+    <string name="animate">¡Animate!</string>
     <string-array name="prioridades">
         <item>1</item>
         <item>2</item>
